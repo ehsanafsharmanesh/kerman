@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سرگروه های آموزشی استان کرمان</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -21,18 +21,44 @@
             min-height: 100vh;
         }
 
-        /* اسلایدر */
+        /* هدر اصلی */
+        .main-header {
+            background: rgba(255,255,255,0.95);
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .main-header h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .main-header p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-top: 0.5rem;
+            font-weight: 300;
+        }
+
+        /* اسلایدر اصلی */
         .slider {
             position: relative;
-            height: 60vh;
+            height: 50vh;
             overflow: hidden;
-            border-radius: 0 0 20px 20px;
+            border-radius: 20px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin: 2rem;
         }
 
         .slides {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.4s ease-in-out;
             height: 100%;
         }
 
@@ -40,15 +66,23 @@
             min-width: 100%;
             height: 100%;
             position: relative;
-            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            background: linear-gradient(45deg, #ff6b6b, #ffa8a8, #ffd8d8);
         }
 
         .slide:nth-child(2) {
-            background: linear-gradient(45deg, #43e97b 0%, #38f9d7 100%);
+            background: linear-gradient(45deg, #4ecdc4, #a3d9d9, #d4f0f0);
         }
 
         .slide:nth-child(3) {
-            background: linear-gradient(45deg, #fa709a 0%, #fee140 100%);
+            background: linear-gradient(45deg, #45b7d1, #96d1e4, #cae9f5);
+        }
+
+        .slide:nth-child(4) {
+            background: linear-gradient(45deg, #f093fb, #f6c3ff, #fae2ff);
+        }
+
+        .slide:nth-child(5) {
+            background: linear-gradient(45deg, #ffd93d, #ffed99, #fff6cc);
         }
 
         .slide-content {
@@ -61,13 +95,13 @@
         }
 
         .slide-content h2 {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             margin-bottom: 1rem;
             font-weight: 700;
         }
 
         .slide-content p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 300;
         }
 
@@ -100,12 +134,12 @@
 
         /* باکس های اصلی */
         .container {
-            padding: 4rem 2rem;
+            padding: 2rem;
         }
 
         .boxes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
@@ -113,13 +147,17 @@
 
         .box {
             background: rgba(255,255,255,0.95);
-            padding: 2.5rem;
+            padding: 2rem;
             border-radius: 20px;
             text-align: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
         }
 
         .box:hover {
@@ -131,6 +169,12 @@
             font-size: 3rem;
             color: #667eea;
             margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover i {
+            transform: scale(1.1);
+            color: #764ba2;
         }
 
         .box h3 {
@@ -142,6 +186,110 @@
         .box p {
             color: #666;
             font-size: 1rem;
+        }
+
+        /* صفحات داخلی */
+        .page {
+            display: none;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-header h2 {
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* اسلایدرهای داخلی */
+        .inner-slider {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 2rem;
+        }
+
+        .inner-slides {
+            display: flex;
+            transition: transform 0.4s ease-in-out;
+            height: 100%;
+        }
+
+        .inner-slide {
+            min-width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+        }
+
+        .inner-slide:nth-child(2) {
+            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        }
+
+        .inner-slide:nth-child(3) {
+            background: linear-gradient(45deg, #ff6b6b, #ffa8a8);
+        }
+
+        .inner-slide-content {
+            position: absolute;
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            max-width: 60%;
+        }
+
+        .inner-slide-content h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .inner-slide-content p {
+            font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.9);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 2rem auto;
+            text-align: center;
+            text-decoration: none;
+            max-width: 200px;
+        }
+
+        .back-btn:hover {
+            background: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
         /* لینک های مفید */
@@ -213,8 +361,12 @@
 
         /* ریسپانسیو */
         @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 2.2rem;
+            }
+            
             .slide-content h2 {
-                font-size: 1.8rem;
+                font-size: 1.6rem;
             }
             
             .slide-content p {
@@ -226,7 +378,7 @@
             }
             
             .box {
-                padding: 2rem;
+                padding: 1.5rem;
             }
             
             .links-grid {
@@ -241,29 +393,59 @@
                 width: 40px;
                 height: 40px;
             }
+            
+            .inner-slider {
+                height: 300px;
+            }
+            
+            .inner-slide-content {
+                max-width: 80%;
+            }
+            
+            .inner-slide-content h3 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- اسلایدر -->
+    <!-- هدر اصلی -->
+    <header class="main-header">
+        <h1>سرگروه های آموزشی استان کرمان</h1>
+        <p>ارتقای کیفیت آموزش و پرورش در سراسر استان</p>
+    </header>
+
+    <!-- اسلایدر اصلی -->
     <div class="slider">
         <div class="slides">
             <div class="slide active">
                 <div class="slide-content">
-                    <h2>به وبسایت سرگروه های آموزشی خوش آمدید</h2>
-                    <p>ارائه بهترین منابع و محتوای آموزشی</p>
+                    <h2>بهترین منابع آموزشی</h2>
+                    <p>دسترسی به جدیدترین محتوای آموزشی</p>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide-content">
-                    <h2>آموزش با کیفیت برای همه</h2>
-                    <p>توسعه مستمر آموزشی در استان کرمان</p>
+                    <h2>کارگاه های تخصصی</h2>
+                    <p>برگزاری دوره های آموزشی برای معلمان</p>
                 </div>
             </div>
             <div class="slide">
                 <div class="slide-content">
-                    <h2>تولید محتوای آموزشی</h2>
-                    <p>منابع متنوع برای معلمان و دانش آموزان</p>
+                    <h2>مشاوره آموزشی</h2>
+                    <p>پشتیبانی و راهنمایی مستمر</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>تولید محتوای دیجیتال</h2>
+                    <p>منابع آموزشی متنوع و جذاب</p>
+                </div>
+            </div>
+            <div class="slide">
+                <div class="slide-content">
+                    <h2>همکاری منطقه ای</h2>
+                    <p>تعامل و تبادل تجربه بین مناطق</p>
                 </div>
             </div>
         </div>
@@ -273,48 +455,156 @@
         </div>
     </div>
 
-    <!-- باکس های اصلی -->
-    <div class="container">
-        <div class="boxes">
-            <div class="box">
-                <i class="fas fa-download"></i>
-                <h3>دانلود فایلها</h3>
-                <p>دسترسی به فایل های آموزشی</p>
+    <!-- صفحه اصلی -->
+    <div class="page active" id="main-page">
+        <!-- باکس های اصلی -->
+        <div class="container">
+            <div class="boxes">
+                <a href="#" class="box" onclick="showPage('download-page')">
+                    <i class="fas fa-download"></i>
+                    <h3>دانلود فایلها</h3>
+                    <p>دسترسی به فایل های آموزشی</p>
+                </a>
+                <a href="#" class="box" onclick="showPage('circular-page')">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>بخشنامه های جدید</h3>
+                    <p>آخرین اطلاعیه ها</p>
+                </a>
+                <a href="#" class="box" onclick="showPage('content-page')">
+                    <i class="fas fa-palette"></i>
+                    <h3>تولید محتوای مناطق</h3>
+                    <p>محتوای آموزشی اختصاصی</p>
+                </a>
             </div>
-            <div class="box">
-                <i class="fas fa-bullhorn"></i>
-                <h3>بخشنامه های جدید</h3>
-                <p>آخرین اطلاعیه ها</p>
-            </div>
-            <div class="box">
-                <i class="fas fa-palette"></i>
-                <h3>تولید محتوای مناطق</h3>
-                <p>محتوای آموزشی اختصاصی</p>
+        </div>
+
+        <!-- لینک های مفید -->
+        <div class="links-section">
+            <h2>لینک های مفید</h2>
+            <div class="links-grid">
+                <a href="#" class="link-item">
+                    <i class="fas fa-book"></i>
+                    <span>کتابخانه دیجیتال</span>
+                </a>
+                <a href="#" class="link-item">
+                    <i class="fas fa-video"></i>
+                    <span>آموزش های ویدئویی</span>
+                </a>
+                <a href="#" class="link-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>برنامه زمانی</span>
+                </a>
+                <a href="#" class="link-item">
+                    <i class="fas fa-users"></i>
+                    <span>انجمن معلمان</span>
+                </a>
             </div>
         </div>
     </div>
 
-    <!-- لینک های مفید -->
-    <div class="links-section">
-        <h2>لینک های مفید</h2>
-        <div class="links-grid">
-            <a href="#" class="link-item">
-                <i class="fas fa-book"></i>
-                <span>کتابخانه دیجیتال</span>
-            </a>
-            <a href="#" class="link-item">
-                <i class="fas fa-video"></i>
-                <span>آموزش های ویدئویی</span>
-            </a>
-            <a href="#" class="link-item">
-                <i class="fas fa-calendar-alt"></i>
-                <span>برنامه زمانی</span>
-            </a>
-            <a href="#" class="link-item">
-                <i class="fas fa-users"></i>
-                <span>انجمن معلمان</span>
-            </a>
+    <!-- صفحه دانلود فایلها -->
+    <div class="page" id="download-page">
+        <div class="page-header">
+            <h2>دانلود فایل های مرتبط با حوزه سرگروهی و مشاوره</h2>
+            <p>دسترسی به جدیدترین فایل های آموزشی و راهنمایی</p>
         </div>
+        
+        <div class="inner-slider">
+            <div class="inner-slides">
+                <div class="inner-slide active">
+                    <div class="inner-slide-content">
+                        <h3>راهنمای برنامه ریزی درسی</h3>
+                        <p>کاملترین مجموعه برنامه ریزی آموزشی برای سال تحصیلی جدید</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>نمونه سوالات امتحانی</h3>
+                        <p>بانک سوالات استاندارد برای تمام پایه های تحصیلی</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>طرح درس روزانه</h3>
+                        <p>طرح درس های آماده برای معلمان محترم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showPage('main-page')">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </button>
+    </div>
+
+    <!-- صفحه بخشنامه ها -->
+    <div class="page" id="circular-page">
+        <div class="page-header">
+            <h2>بخشنامه های جدید آموزشی</h2>
+            <p>آخرین اطلاعیه ها و دستورالعمل های اداره کل آموزش و پرورش</p>
+        </div>
+        
+        <div class="inner-slider">
+            <div class="inner-slides">
+                <div class="inner-slide active">
+                    <div class="inner-slide-content">
+                        <h3>برگزاری المپیادهای علمی</h3>
+                        <p>دستورالعمل جدید برگزاری المپیادهای استانی</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>برنامه ارزشیابی کیفی</h3>
+                        <p>آخرین تغییرات در شیوه نامه ارزشیابی تحصیلی</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>کارگاه های تابستانی</h3>
+                        <p>فراخوان شرکت در دوره های تابستانه توانمندسازی</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showPage('main-page')">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </button>
+    </div>
+
+    <!-- صفحه تولید محتوا -->
+    <div class="page" id="content-page">
+        <div class="page-header">
+            <h2>تولید محتوای مناطق آموزشی</h2>
+            <p>محتوای اختصاصی تولید شده توسط سرگروه های مناطق مختلف</p>
+        </div>
+        
+        <div class="inner-slider">
+            <div class="inner-slides">
+                <div class="inner-slide active">
+                    <div class="inner-slide-content">
+                        <h3>محتوای چندرسانه ای</h3>
+                        <p>انیمیشن ها و فیلم های آموزشی تولید شده توسط معلمان</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>بسته های آموزشی</h3>
+                        <p>مجموعه کامل آموزشی برای دروس مختلف</p>
+                    </div>
+                </div>
+                <div class="inner-slide">
+                    <div class="inner-slide-content">
+                        <h3>نرم افزارهای آموزشی</h3>
+                        <p>اپلیکیشن ها و نرم افزارهای کمک آموزشی</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="back-btn" onclick="showPage('main-page')">
+            <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+        </button>
     </div>
 
     <!-- فوتر -->
@@ -323,47 +613,60 @@
     </footer>
 
     <script>
-        // اسلایدر
-        const slides = document.querySelector('.slides');
-        const slideItems = document.querySelectorAll('.slide');
-        const prevBtn = document.querySelector('.prev');
-        const nextBtn = document.querySelector('.next');
-        let currentSlide = 0;
-        const totalSlides = slideItems.length;
-
-        function updateSlider() {
-            slides.style.transform = `translateX(${currentSlide * -100}%)`;
+        // مدیریت صفحات
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
         }
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
+        // اسلایدر اصلی
+        const mainSlider = {
+            slides: document.querySelector('.slides'),
+            slideItems: document.querySelectorAll('.slide'),
+            prevBtn: document.querySelector('.prev'),
+            nextBtn: document.querySelector('.next'),
+            currentSlide: 0,
+            totalSlides: document.querySelectorAll('.slide').length,
 
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-        }
+            init() {
+                this.prevBtn.addEventListener('click', () => this.prevSlide());
+                this.nextBtn.addEventListener('click', () => this.nextSlide());
+                setInterval(() => this.nextSlide(), 3000);
+            },
 
-        // اتوماتیک اسلاید
-        let slideInterval = setInterval(nextSlide, 5000);
+            nextSlide() {
+                this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                this.updateSlider();
+            },
 
-        // هاور کردن روی اسلایدر
-        const slider = document.querySelector('.slider');
-        slider.addEventListener('mouseenter', () => {
-            clearInterval(slideInterval);
+            prevSlide() {
+                this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                this.updateSlider();
+            },
+
+            updateSlider() {
+                this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
+            }
+        };
+
+        // اسلایدرهای داخلی
+        const innerSliders = document.querySelectorAll('.inner-slides');
+        innerSliders.forEach(slider => {
+            let currentSlide = 0;
+            const slides = slider.querySelectorAll('.inner-slide');
+            const totalSlides = slides.length;
+
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % totalSlides;
+                slider.style.transform = `translateX(${currentSlide * -100}%)`;
+            }, 3500);
         });
 
-        slider.addEventListener('mouseleave', () => {
-            slideInterval = setInterval(nextSlide, 5000);
-        });
-
-        // دکمه ها
-        nextBtn.addEventListener('click', nextSlide);
-        prevBtn.addEventListener('click', prevSlide);
-
-        // ریسپانسیو منو
+        // راه اندازی اسلایدر اصلی
         document.addEventListener('DOMContentLoaded', function() {
+            mainSlider.init();
             console.log('سایت سرگروه های آموزشی استان کرمان بارگذاری شد');
         });
     </script>
