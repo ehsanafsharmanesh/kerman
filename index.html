@@ -567,8 +567,8 @@
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev" onclick="innerSliders['download'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next" onclick="innerSliders['download'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -606,8 +606,8 @@
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev" onclick="innerSliders['circular'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next" onclick="innerSliders['circular'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -645,8 +645,8 @@
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev" onclick="innerSliders['content'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next" onclick="innerSliders['content'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -723,73 +723,112 @@
         };
 
         // اسلایدرهای داخلی
-        function initInnerSliders() {
-            const innerSliders = document.querySelectorAll('.inner-slider');
+        const innerSliders = {
+            'download': {
+                slides: null,
+                currentSlide: 0,
+                totalSlides: 3,
+                interval: null,
+                
+                init() {
+                    this.slides = document.querySelector('#download-page .inner-slides');
+                    this.startAutoSlide();
+                },
+                
+                startAutoSlide() {
+                    clearInterval(this.interval);
+                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                },
+                
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                prevSlide() {
+                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                updateSlider() {
+                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
+                }
+            },
             
-            innerSliders.forEach((slider, index) => {
-                const slides = slider.querySelector('.inner-slides');
-                const slideItems = slider.querySelectorAll('.inner-slide');
-                const prevBtn = slider.querySelector('.inner-prev');
-                const nextBtn = slider.querySelector('.inner-next');
-                let currentSlide = 0;
-                const totalSlides = slideItems.length;
-                let interval;
-
-                function updateInnerSlider() {
-                    slides.style.transform = `translateX(${currentSlide * -100}%)`;
-                }
-
-                function nextInnerSlide() {
-                    currentSlide = (currentSlide + 1) % totalSlides;
-                    updateInnerSlider();
-                }
-
-                function prevInnerSlide() {
-                    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                    updateInnerSlider();
-                }
-
-                // راه اندازی اتوماتیک اسلایدر
-                function startAutoSlide() {
-                    clearInterval(interval);
-                    interval = setInterval(nextInnerSlide, 3500);
-                }
-
-                // دکمه‌های ناوبری
-                prevBtn.addEventListener('click', () => {
-                    prevInnerSlide();
-                    startAutoSlide();
-                });
+            'circular': {
+                slides: null,
+                currentSlide: 0,
+                totalSlides: 3,
+                interval: null,
                 
-                nextBtn.addEventListener('click', () => {
-                    nextInnerSlide();
-                    startAutoSlide();
-                });
-
-                // توقف اسلایدر وقتی ماوس روی آن است
-                slider.addEventListener('mouseenter', () => {
-                    clearInterval(interval);
-                });
+                init() {
+                    this.slides = document.querySelector('#circular-page .inner-slides');
+                    this.startAutoSlide();
+                },
                 
-                slider.addEventListener('mouseleave', () => {
-                    startAutoSlide();
-                });
-
-                // راه اندازی اولیه
-                startAutoSlide();
-                updateInnerSlider();
-            });
-        }
+                startAutoSlide() {
+                    clearInterval(this.interval);
+                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                },
+                
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                prevSlide() {
+                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                updateSlider() {
+                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
+                }
+            },
+            
+            'content': {
+                slides: null,
+                currentSlide: 0,
+                totalSlides: 3,
+                interval: null,
+                
+                init() {
+                    this.slides = document.querySelector('#content-page .inner-slides');
+                    this.startAutoSlide();
+                },
+                
+                startAutoSlide() {
+                    clearInterval(this.interval);
+                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                },
+                
+                nextSlide() {
+                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                prevSlide() {
+                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+                    this.updateSlider();
+                },
+                
+                updateSlider() {
+                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
+                }
+            }
+        };
 
         // راه اندازی اسلایدرها
         document.addEventListener('DOMContentLoaded', function() {
             mainSlider.init();
-            initInnerSliders();
+            
+            // راه اندازی اسلایدرهای داخلی
+            innerSliders.download.init();
+            innerSliders.circular.init();
+            innerSliders.content.init();
+            
             console.log('سایت سرگروه های آموزشی استان کرمان بارگذاری شد');
         });
     </script>
 </body>
 </html>
-
-
-
