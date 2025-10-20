@@ -66,32 +66,33 @@
             min-width: 100%;
             height: 100%;
             position: relative;
-            background: linear-gradient(45deg, #ff6b6b, #ffa8a8, #ffd8d8);
+            cursor: pointer;
         }
 
-        .slide:nth-child(2) {
-            background: linear-gradient(45deg, #4ecdc4, #a3d9d9, #d4f0f0);
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .slide:nth-child(3) {
-            background: linear-gradient(45deg, #45b7d1, #96d1e4, #cae9f5);
-        }
-
-        .slide:nth-child(4) {
-            background: linear-gradient(45deg, #f093fb, #f6c3ff, #fae2ff);
-        }
-
-        .slide:nth-child(5) {
-            background: linear-gradient(45deg, #ffd93d, #ffed99, #fff6cc);
+        .slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .slide-content {
-            position: absolute;
-            top: 50%;
-            right: 10%;
-            transform: translateY(-50%);
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            text-align: center;
+            padding: 2rem;
         }
 
         .slide-content h2 {
@@ -113,6 +114,7 @@
             justify-content: space-between;
             padding: 0 2rem;
             transform: translateY(-50%);
+            z-index: 10;
         }
 
         .slider-nav button {
@@ -237,25 +239,34 @@
             min-width: 100%;
             height: 100%;
             position: relative;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            cursor: pointer;
         }
 
-        .inner-slide:nth-child(2) {
-            background: linear-gradient(45deg, #4ecdc4, #44a08d);
+        .inner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
-        .inner-slide:nth-child(3) {
-            background: linear-gradient(45deg, #ff6b6b, #ffa8a8);
+        .inner-slide-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .inner-slide-content {
-            position: absolute;
-            top: 50%;
-            right: 10%;
-            transform: translateY(-50%);
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            max-width: 60%;
+            text-align: center;
+            padding: 2rem;
+            max-width: 80%;
         }
 
         .inner-slide-content h3 {
@@ -277,6 +288,7 @@
             justify-content: space-between;
             padding: 0 2rem;
             transform: translateY(-50%);
+            z-index: 10;
         }
 
         .inner-slider-nav button {
@@ -426,7 +438,7 @@
             }
             
             .inner-slide-content {
-                max-width: 80%;
+                max-width: 90%;
             }
             
             .inner-slide-content h3 {
@@ -456,35 +468,58 @@
         <!-- اسلایدر اصلی -->
         <div class="slider">
             <div class="slides">
-                <div class="slide active">
-                    <div class="slide-content">
-                        <h2>جلسه 28 مهرماه 1404</h2>
-                        <p>بخشداری و مجموعه رفاهی فرهنگیان ماهان</p>
+                <!-- اسلاید 1 - قابل کلیک برای رفتن به صفحه دانلود -->
+                <div class="slide active" onclick="showPage('download-page')">
+                    <img src="images/education1.jpg" alt="منابع آموزشی">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h2>دانلود منابع آموزشی</h2>
+                            <p>دسترسی به جدیدترین فایل های آموزشی و راهنمایی</p>
+                        </div>
                     </div>
                 </div>
-                <div class="slides">
-                    <div class="slide active">
-                       <div class="slide-content">
-                        <h2>کارگاه های تخصصی</h2>
-                        <p>برگزاری دوره های آموزشی برای معلمان</p>
+                
+                <!-- اسلاید 2 - قابل کلیک برای رفتن به صفحه بخشنامه ها -->
+                <div class="slide" onclick="showPage('circular-page')">
+                    <img src="images/circular1.jpg" alt="بخشنامه های جدید">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h2>بخشنامه های جدید</h2>
+                            <p>آخرین اطلاعیه ها و دستورالعمل های آموزشی</p>
+                        </div>
                     </div>
                 </div>
-                <div class="slide">
-                    <div class="slide-content">
-                        <h2>مشاوره آموزشی</h2>
-                        <p>پشتیبانی و راهنمایی مستمر</p>
+                
+                <!-- اسلاید 3 - قابل کلیک برای رفتن به صفحه تولید محتوا -->
+                <div class="slide" onclick="showPage('content-page')">
+                    <img src="images/content1.jpg" alt="تولید محتوا">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h2>تولید محتوای آموزشی</h2>
+                            <p>منابع متنوع و جذاب برای معلمان و دانش آموزان</p>
+                        </div>
                     </div>
                 </div>
-                <div class="slide">
-                    <div class="slide-content">
-                        <h2>تولید محتوای دیجیتال</h2>
-                        <p>منابع آموزشی متنوع و جذاب</p>
+                
+                <!-- اسلاید 4 - قابل کلیک برای لینک خارجی -->
+                <div class="slide" onclick="window.open('https://shad.ir/moshaver_kerman', '_blank')">
+                    <img src="images/workshop1.jpg" alt="کارگاه های آموزشی">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h2>کارگاه های تخصصی</h2>
+                            <p>برگزاری دوره های آموزشی برای معلمان و مشاوران</p>
+                        </div>
                     </div>
                 </div>
-                <div class="slide">
-                    <div class="slide-content">
-                        <h2>همکاری منطقه ای</h2>
-                        <p>تعامل و تبادل تجربه بین مناطق</p>
+                
+                <!-- اسلاید 5 - قابل کلیک برای لینک خارجی -->
+                <div class="slide" onclick="window.open('#', '_blank')">
+                    <img src="images/consultation1.jpg" alt="مشاوره آموزشی">
+                    <div class="slide-overlay">
+                        <div class="slide-content">
+                            <h2>مشاوره تخصصی</h2>
+                            <p>پشتیبانی و راهنمایی مستمر برای همکاران</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -531,7 +566,7 @@
                     <i class="fas fa-calendar-alt"></i>
                     <span>برنامه زمانی</span>
                 </a>
-                <a href="https://shad.ir/moshaver_kerman" class="link-item">
+                <a href="https://shad.ir/moshaver_kerman" class="link-item" target="_blank">
                     <i class="fas fa-users"></i>
                     <span>گروه بزرگ مشاوران</span>
                 </a>
@@ -548,22 +583,36 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <div class="inner-slide active">
-                    <div class="inner-slide-content">
-                        <h3>راهنمای برنامه ریزی درسی</h3>
-                        <p>کاملترین مجموعه برنامه ریزی آموزشی برای سال تحصیلی جدید</p>
+                <!-- اسلاید داخلی 1 - قابل کلیک -->
+                <div class="inner-slide active" onclick="window.open('#', '_blank')">
+                    <img src="images/download1.jpg" alt="راهنمای برنامه ریزی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>راهنمای برنامه ریزی درسی</h3>
+                            <p>کاملترین مجموعه برنامه ریزی آموزشی برای سال تحصیلی جدید</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>نمونه سوالات امتحانی</h3>
-                        <p>بانک سوالات استاندارد برای تمام پایه های تحصیلی</p>
+                
+                <!-- اسلاید داخلی 2 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/download2.jpg" alt="نمونه سوالات">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>نمونه سوالات امتحانی</h3>
+                            <p>بانک سوالات استاندارد برای تمام پایه های تحصیلی</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>طرح درس روزانه</h3>
-                        <p>طرح درس های آماده برای معلمان محترم</p>
+                
+                <!-- اسلاید داخلی 3 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/download3.jpg" alt="طرح درس">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>طرح درس روزانه</h3>
+                            <p>طرح درس های آماده برای معلمان محترم</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -587,22 +636,36 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <div class="inner-slide active">
-                    <div class="inner-slide-content">
-                        <h3>برگزاری المپیادهای علمی</h3>
-                        <p>دستورالعمل جدید برگزاری المپیادهای استانی</p>
+                <!-- اسلاید داخلی 1 - قابل کلیک -->
+                <div class="inner-slide active" onclick="window.open('#', '_blank')">
+                    <img src="images/circular2.jpg" alt="المپیادهای علمی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>برگزاری المپیادهای علمی</h3>
+                            <p>دستورالعمل جدید برگزاری المپیادهای استانی</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>برنامه ارزشیابی کیفی</h3>
-                        <p>آخرین تغییرات در شیوه نامه ارزشیابی تحصیلی</p>
+                
+                <!-- اسلاید داخلی 2 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/circular3.jpg" alt="ارزشیابی کیفی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>برنامه ارزشیابی کیفی</h3>
+                            <p>آخرین تغییرات در شیوه نامه ارزشیابی تحصیلی</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>کارگاه های تابستانی</h3>
-                        <p>فراخوان شرکت در دوره های تابستانه توانمندسازی</p>
+                
+                <!-- اسلاید داخلی 3 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/circular4.jpg" alt="کارگاه های تابستانی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>کارگاه های تابستانی</h3>
+                            <p>فراخوان شرکت در دوره های تابستانه توانمندسازی</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -626,22 +689,36 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <div class="inner-slide active">
-                    <div class="inner-slide-content">
-                        <h3>محتوای چندرسانه ای</h3>
-                        <p>انیمیشن ها و فیلم های آموزشی تولید شده توسط معلمان</p>
+                <!-- اسلاید داخلی 1 - قابل کلیک -->
+                <div class="inner-slide active" onclick="window.open('#', '_blank')">
+                    <img src="images/content2.jpg" alt="محتوای چندرسانه ای">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>محتوای چندرسانه ای</h3>
+                            <p>انیمیشن ها و فیلم های آموزشی تولید شده توسط معلمان</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>بسته های آموزشی</h3>
-                        <p>مجموعه کامل آموزشی برای دروس مختلف</p>
+                
+                <!-- اسلاید داخلی 2 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/content3.jpg" alt="بسته های آموزشی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>بسته های آموزشی</h3>
+                            <p>مجموعه کامل آموزشی برای دروس مختلف</p>
+                        </div>
                     </div>
                 </div>
-                <div class="inner-slide">
-                    <div class="inner-slide-content">
-                        <h3>نرم افزارهای آموزشی</h3>
-                        <p>اپلیکیشن ها و نرم افزارهای کمک آموزشی</p>
+                
+                <!-- اسلاید داخلی 3 - قابل کلیک -->
+                <div class="inner-slide" onclick="window.open('#', '_blank')">
+                    <img src="images/content4.jpg" alt="نرم افزارهای آموزشی">
+                    <div class="inner-slide-overlay">
+                        <div class="inner-slide-content">
+                            <h3>نرم افزارهای آموزشی</h3>
+                            <p>اپلیکیشن ها و نرم افزارهای کمک آموزشی</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -705,7 +782,7 @@
 
             startAutoSlide() {
                 clearInterval(this.interval);
-                this.interval = setInterval(() => this.nextSlide(), 3000);
+                this.interval = setInterval(() => this.nextSlide(), 4000);
             },
 
             nextSlide() {
@@ -738,7 +815,7 @@
                 
                 startAutoSlide() {
                     clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                    this.interval = setInterval(() => this.nextSlide(), 4500);
                 },
                 
                 nextSlide() {
@@ -769,7 +846,7 @@
                 
                 startAutoSlide() {
                     clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                    this.interval = setInterval(() => this.nextSlide(), 4500);
                 },
                 
                 nextSlide() {
@@ -800,7 +877,7 @@
                 
                 startAutoSlide() {
                     clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 3500);
+                    this.interval = setInterval(() => this.nextSlide(), 4500);
                 },
                 
                 nextSlide() {
@@ -833,4 +910,3 @@
     </script>
 </body>
 </html>
-
