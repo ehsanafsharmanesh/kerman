@@ -1083,6 +1083,12 @@
             
             // داده‌های نمونه برای لینک‌های دانلود
             const downloadItems = [
+                        { 
+            icon: 'fas fa-file-pdf', 
+            title: 'فرم بازدید مدارس', 
+            desc: 'ویژه مدارس ابتدایی',
+            link: 'https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm' // لینک واقعی
+        },
                 { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه مدارس ابتدایی' },
                 { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه متوسطه اول' },
                 { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه  متوسطه دوم' },
@@ -1098,7 +1104,7 @@
             // ایجاد آیتم‌های چرخشی
             downloadItems.forEach((item, index) => {
                 const carouselItem = document.createElement('a');
-                carouselItem.href = "www.google.com";
+                carouselItem.href = "#";
                 carouselItem.className = 'carousel-item';
                 carouselItem.innerHTML = `
                     <i class="${item.icon}"></i>
@@ -1263,6 +1269,7 @@
     </script>
 </body>
 </html>
+
 
 
 
