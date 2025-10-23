@@ -1101,22 +1101,23 @@
                 { icon: 'fas fa-file-image', title: 'تصاویر آموزشی', desc: 'مجموعه عکس‌های آموزشی' }
             ];
             
-            // ایجاد آیتم‌های چرخشی
-            downloadItems.forEach((item, index) => {
-                const carouselItem = document.createElement('a');
-                carouselItem.href = "#";
-                carouselItem.className = 'carousel-item';
-                carouselItem.innerHTML = `
-                    <i class="${item.icon}"></i>
-                    <h3>${item.title}</h3>
-                    <p>${item.desc}</p>
-                `;
-                carouselInner.appendChild(carouselItem);
-            });
-            
-            // تنظیم موقعیت اولیه
-            updateCarousel('download');
-        }
+    // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
+    downloadItems.forEach((item, index) => {
+        const carouselItem = document.createElement('a');
+        carouselItem.href = item.link; // استفاده از لینک واقعی
+        carouselItem.className = 'carousel-item';
+        carouselItem.target = '_blank'; // باز کردن در تب جدید (اختیاری)
+        carouselItem.innerHTML = `
+            <i class="${item.icon}"></i>
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+        `;
+        carouselInner.appendChild(carouselItem);
+    });
+    
+    // تنظیم موقعیت اولیه
+    updateCarousel('download');
+}
 
         // چرخش لینک‌ها برای صفحه بخشنامه‌ها
         function initCircularCarousel() {
@@ -1269,6 +1270,7 @@
     </script>
 </body>
 </html>
+
 
 
 
