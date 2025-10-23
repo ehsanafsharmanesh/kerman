@@ -1083,6 +1083,11 @@
             
             // داده‌های نمونه برای لینک‌های دانلود
             const downloadItems = [
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه مدارس ابتدایی' },
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه متوسطه اول' },
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه  متوسطه دوم' },
+                { icon: 'fas fa-file-pdf', title: 'بازدید از فعالیت سرگروه', desc: 'ویژه  سرگروه منطقه' },
+                { icon: 'fas fa-file-pdf', title: 'راهنمای مشاوره تحصیلی', desc: 'فایل PDF راهنمای جامع' },
                 { icon: 'fas fa-file-pdf', title: 'راهنمای مشاوره تحصیلی', desc: 'فایل PDF راهنمای جامع' },
                 { icon: 'fas fa-file-word', title: 'نمونه فرم‌های ارزشیابی', desc: 'فایل Word قابل ویرایش' },
                 { icon: 'fas fa-file-excel', title: 'نمرات و آمار', desc: 'فایل Excel آماده' },
@@ -1093,7 +1098,7 @@
             // ایجاد آیتم‌های چرخشی
             downloadItems.forEach((item, index) => {
                 const carouselItem = document.createElement('a');
-                carouselItem.href = "#";
+                carouselItem.href = "www.google.com";
                 carouselItem.className = 'carousel-item';
                 carouselItem.innerHTML = `
                     <i class="${item.icon}"></i>
@@ -1258,5 +1263,6 @@
     </script>
 </body>
 </html>
+
 
 
