@@ -24,14 +24,14 @@
         /* هدر اصلی */
         .main-header {
             background: rgba(255,255,255,0.95);
-            padding: 2rem 0;
+            padding: 1.5rem 0;
             text-align: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .main-header h1 {
-            font-size: 3rem;
+            font-size: 2.2rem;
             font-weight: 900;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
@@ -40,7 +40,7 @@
         }
 
         .main-header p {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: #666;
             margin-top: 0.5rem;
             font-weight: 300;
@@ -49,24 +49,35 @@
         /* اسلایدر اصلی */
         .slider {
             position: relative;
-            height: 50vh;
+            height: 400px;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin: 2rem;
+            margin: 1.5rem auto;
+            max-width: 1200px;
+            width: 95%;
         }
 
         .slides {
             display: flex;
-            transition: transform 0.4s ease-in-out;
+            transition: transform 0.5s ease-in-out;
             height: 100%;
+            width: 100%;
         }
 
         .slide {
             min-width: 100%;
             height: 100%;
             position: relative;
+            flex-shrink: 0;
+        }
+
+        .slide-link {
+            display: block;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .slide img {
@@ -82,28 +93,30 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.2));
+            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 1.5rem;
         }
 
         .slide-content {
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            text-align: center;
-            padding: 2rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            text-align: right;
+            max-width: 70%;
         }
 
         .slide-content h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
         .slide-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
+            opacity: 0.9;
         }
 
         .slider-nav {
@@ -112,7 +125,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 2rem;
+            padding: 0 1rem;
             transform: translateY(-50%);
             z-index: 10;
         }
@@ -120,12 +133,12 @@
         .slider-nav button {
             background: rgba(255,255,255,0.8);
             border: none;
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: #333;
         }
 
@@ -136,23 +149,23 @@
 
         /* باکس های اصلی */
         .container {
-            padding: 2rem;
+            padding: 1.5rem;
         }
 
         .boxes {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .box {
             background: rgba(255,255,255,0.95);
-            padding: 2rem;
-            border-radius: 20px;
+            padding: 1.5rem;
+            border-radius: 15px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.2);
@@ -163,14 +176,14 @@
         }
 
         .box:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .box i {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #667eea;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             transition: all 0.3s ease;
         }
 
@@ -180,20 +193,20 @@
         }
 
         .box h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
             color: #333;
         }
 
         .box p {
             color: #666;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
 
         /* صفحات داخلی */
         .page {
             display: none;
-            padding: 2rem;
+            padding: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
@@ -204,42 +217,54 @@
 
         .page-header {
             text-align: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .page-header h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: white;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 1rem;
+            margin-bottom: 0.8rem;
         }
 
         .page-header p {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             color: rgba(255,255,255,0.9);
         }
 
         /* اسلایدرهای داخلی */
         .inner-slider {
             position: relative;
-            height: 400px;
+            height: 350px;
             overflow: hidden;
-            border-radius: 20px;
+            border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .inner-slides {
             display: flex;
-            transition: transform 0.4s ease-in-out;
+            transition: transform 0.5s ease-in-out;
             height: 100%;
+            width: 100%;
         }
 
         .inner-slide {
             min-width: 100%;
             height: 100%;
             position: relative;
+            flex-shrink: 0;
+        }
+
+        .inner-slide-link {
+            display: block;
+            width: 100%;
+            height: 100%;
             cursor: pointer;
+            text-decoration: none;
         }
 
         .inner-slide img {
@@ -257,27 +282,28 @@
             height: 100%;
             background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.3));
             display: flex;
-            align-items: center;
-            justify-content: center;
+            align-items: flex-end;
+            justify-content: flex-start;
+            padding: 1.5rem;
         }
 
         .inner-slide-content {
             color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            text-align: center;
-            padding: 2rem;
-            max-width: 80%;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            text-align: right;
+            max-width: 70%;
         }
 
         .inner-slide-content h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
             font-weight: 700;
         }
 
         .inner-slide-content p {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
+            opacity: 0.9;
         }
 
         .inner-slider-nav {
@@ -286,7 +312,7 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
-            padding: 0 2rem;
+            padding: 0 1rem;
             transform: translateY(-50%);
             z-index: 10;
         }
@@ -311,29 +337,29 @@
         .back-btn {
             background: rgba(255,255,255,0.9);
             border: none;
-            padding: 1rem 2rem;
+            padding: 0.8rem 1.5rem;
             border-radius: 50px;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 500;
             color: #333;
             transition: all 0.3s ease;
             display: block;
-            margin: 2rem auto;
+            margin: 1.5rem auto;
             text-align: center;
             text-decoration: none;
-            max-width: 200px;
+            max-width: 180px;
         }
 
         .back-btn:hover {
             background: white;
             transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
         }
 
         /* لینک های مفید */
         .links-section {
-            padding: 4rem 2rem;
+            padding: 3rem 1.5rem;
             background: rgba(255,255,255,0.1);
             backdrop-filter: blur(10px);
         }
@@ -341,23 +367,23 @@
         .links-section h2 {
             text-align: center;
             color: white;
-            font-size: 2.5rem;
-            margin-bottom: 3rem;
+            font-size: 2rem;
+            margin-bottom: 2rem;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .link-item {
             background: rgba(255,255,255,0.95);
-            padding: 2rem;
-            border-radius: 15px;
+            padding: 1.5rem;
+            border-radius: 12px;
             text-decoration: none;
             color: #333;
             text-align: center;
@@ -366,22 +392,22 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 1rem;
+            gap: 0.8rem;
         }
 
         .link-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
             background: white;
         }
 
         .link-item i {
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             color: #667eea;
         }
 
         .link-item span {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: 500;
         }
 
@@ -390,63 +416,62 @@
             background: rgba(0,0,0,0.8);
             color: white;
             text-align: center;
-            padding: 2rem;
-            margin-top: 4rem;
+            padding: 1.5rem;
+            margin-top: 3rem;
         }
 
         footer p {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         /* ریسپانسیو */
         @media (max-width: 768px) {
             .main-header h1 {
-                font-size: 2.2rem;
+                font-size: 1.8rem;
+            }
+            
+            .slider {
+                height: 300px;
+                margin: 1rem auto;
             }
             
             .slide-content h2 {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
             }
             
             .slide-content p {
-                font-size: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .slide-content,
+            .inner-slide-content {
+                max-width: 85%;
             }
             
             .boxes {
                 grid-template-columns: 1fr;
+                gap: 1rem;
             }
             
             .box {
-                padding: 1.5rem;
+                padding: 1.2rem;
             }
             
             .links-grid {
                 grid-template-columns: 1fr;
             }
             
-            .slider-nav {
-                padding: 0 1rem;
-            }
-            
             .slider-nav button {
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
             }
             
             .inner-slider {
-                height: 300px;
-            }
-            
-            .inner-slide-content {
-                max-width: 90%;
+                height: 250px;
             }
             
             .inner-slide-content h3 {
-                font-size: 1.5rem;
-            }
-            
-            .inner-slider-nav {
-                padding: 0 1rem;
+                font-size: 1.3rem;
             }
             
             .inner-slider-nav button {
@@ -468,59 +493,69 @@
         <!-- اسلایدر اصلی -->
         <div class="slider">
             <div class="slides">
-                <!-- اسلاید 1 - قابل کلیک برای رفتن به صفحه دانلود -->
-                <div class="slide active" onclick="showPage('download-page')">
-                    <img src="images/education1.jpg" alt="منابع آموزشی">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>دانلود منابع آموزشی</h2>
-                            <p>دسترسی به جدیدترین فایل های آموزشی و راهنمایی</p>
+                <!-- اسلاید 1 -->
+                <div class="slide">
+                    <a href="javascript:void(0)" class="slide-link" onclick="showPage('download-page')">
+                        <img src="images/education1.jpg" alt="منابع آموزشی">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>دانلود منابع آموزشی</h2>
+                                <p>دسترسی به جدیدترین فایل های آموزشی و راهنمایی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید 2 - قابل کلیک برای رفتن به صفحه بخشنامه ها -->
-                <div class="slide" onclick="showPage('circular-page')">
-                    <img src="images/circular1.jpg" alt="بخشنامه های جدید">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>بخشنامه های جدید</h2>
-                            <p>آخرین اطلاعیه ها و دستورالعمل های آموزشی</p>
+                <!-- اسلاید 2 -->
+                <div class="slide">
+                    <a href="javascript:void(0)" class="slide-link" onclick="showPage('circular-page')">
+                        <img src="images/circular1.jpg" alt="بخشنامه های جدید">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>بخشنامه های جدید</h2>
+                                <p>آخرین اطلاعیه ها و دستورالعمل های آموزشی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید 3 - قابل کلیک برای رفتن به صفحه تولید محتوا -->
-                <div class="slide" onclick="showPage('content-page')">
-                    <img src="images/content1.jpg" alt="تولید محتوا">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>تولید محتوای آموزشی</h2>
-                            <p>منابع متنوع و جذاب برای معلمان و دانش آموزان</p>
+                <!-- اسلاید 3 -->
+                <div class="slide">
+                    <a href="javascript:void(0)" class="slide-link" onclick="showPage('content-page')">
+                        <img src="images/content1.jpg" alt="تولید محتوا">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>تولید محتوای آموزشی</h2>
+                                <p>منابع متنوع و جذاب برای معلمان و دانش آموزان</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید 4 - قابل کلیک برای لینک خارجی -->
-                <div class="slide" onclick="window.open('https://shad.ir/moshaver_kerman', '_blank')">
-                    <img src="images/workshop1.jpg" alt="کارگاه های آموزشی">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>کارگاه های تخصصی</h2>
-                            <p>برگزاری دوره های آموزشی برای معلمان و مشاوران</p>
+                <!-- اسلاید 4 -->
+                <div class="slide">
+                    <a href="https://shad.ir/moshaver_kerman" class="slide-link" target="_blank">
+                        <img src="images/workshop1.jpg" alt="کارگاه های آموزشی">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>کارگاه های تخصصی</h2>
+                                <p>برگزاری دوره های آموزشی برای معلمان و مشاوران</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید 5 - قابل کلیک برای لینک خارجی -->
-                <div class="slide" onclick="window.open('#', '_blank')">
-                    <img src="images/consultation1.jpg" alt="مشاوره آموزشی">
-                    <div class="slide-overlay">
-                        <div class="slide-content">
-                            <h2>مشاوره تخصصی</h2>
-                            <p>پشتیبانی و راهنمایی مستمر برای همکاران</p>
+                <!-- اسلاید 5 -->
+                <div class="slide">
+                    <a href="#" class="slide-link" target="_blank">
+                        <img src="images/consultation1.jpg" alt="مشاوره آموزشی">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>مشاوره تخصصی</h2>
+                                <p>پشتیبانی و راهنمایی مستمر برای همکاران</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="slider-nav">
@@ -532,17 +567,17 @@
         <!-- باکس های اصلی -->
         <div class="container">
             <div class="boxes">
-                <a href="#" class="box" onclick="showPage('download-page')">
+                <a href="javascript:void(0)" class="box" onclick="showPage('download-page')">
                     <i class="fas fa-download"></i>
                     <h3>دانلود فایلها</h3>
                     <p>دسترسی به فایل های آموزشی</p>
                 </a>
-                <a href="#" class="box" onclick="showPage('circular-page')">
+                <a href="javascript:void(0)" class="box" onclick="showPage('circular-page')">
                     <i class="fas fa-bullhorn"></i>
                     <h3>بخشنامه های جدید</h3>
                     <p>آخرین اطلاعیه ها</p>
                 </a>
-                <a href="#" class="box" onclick="showPage('content-page')">
+                <a href="javascript:void(0)" class="box" onclick="showPage('content-page')">
                     <i class="fas fa-palette"></i>
                     <h3>تولید محتوای مناطق</h3>
                     <p>محتوای آموزشی اختصاصی</p>
@@ -583,42 +618,48 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <!-- اسلاید داخلی 1 - قابل کلیک -->
-                <div class="inner-slide active" onclick="window.open('#', '_blank')">
-                    <img src="images/download1.jpg" alt="راهنمای برنامه ریزی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>راهنمای برنامه ریزی درسی</h3>
-                            <p>کاملترین مجموعه برنامه ریزی آموزشی برای سال تحصیلی جدید</p>
+                <!-- اسلاید داخلی 1 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/download1.jpg" alt="راهنمای برنامه ریزی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>راهنمای برنامه ریزی درسی</h3>
+                                <p>کاملترین مجموعه برنامه ریزی آموزشی برای سال تحصیلی جدید</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 2 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/download2.jpg" alt="نمونه سوالات">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>نمونه سوالات امتحانی</h3>
-                            <p>بانک سوالات استاندارد برای تمام پایه های تحصیلی</p>
+                <!-- اسلاید داخلی 2 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/download2.jpg" alt="نمونه سوالات">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>نمونه سوالات امتحانی</h3>
+                                <p>بانک سوالات استاندارد برای تمام پایه های تحصیلی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 3 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/download3.jpg" alt="طرح درس">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>طرح درس روزانه</h3>
-                            <p>طرح درس های آماده برای معلمان محترم</p>
+                <!-- اسلاید داخلی 3 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/download3.jpg" alt="طرح درس">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>طرح درس روزانه</h3>
+                                <p>طرح درس های آماده برای معلمان محترم</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev" onclick="innerSliders['download'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next" onclick="innerSliders['download'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -636,42 +677,48 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <!-- اسلاید داخلی 1 - قابل کلیک -->
-                <div class="inner-slide active" onclick="window.open('#', '_blank')">
-                    <img src="images/circular2.jpg" alt="المپیادهای علمی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>برگزاری المپیادهای علمی</h3>
-                            <p>دستورالعمل جدید برگزاری المپیادهای استانی</p>
+                <!-- اسلاید داخلی 1 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/circular2.jpg" alt="المپیادهای علمی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>برگزاری المپیادهای علمی</h3>
+                                <p>دستورالعمل جدید برگزاری المپیادهای استانی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 2 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/circular3.jpg" alt="ارزشیابی کیفی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>برنامه ارزشیابی کیفی</h3>
-                            <p>آخرین تغییرات در شیوه نامه ارزشیابی تحصیلی</p>
+                <!-- اسلاید داخلی 2 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/circular3.jpg" alt="ارزشیابی کیفی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>برنامه ارزشیابی کیفی</h3>
+                                <p>آخرین تغییرات در شیوه نامه ارزشیابی تحصیلی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 3 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/circular4.jpg" alt="کارگاه های تابستانی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>کارگاه های تابستانی</h3>
-                            <p>فراخوان شرکت در دوره های تابستانه توانمندسازی</p>
+                <!-- اسلاید داخلی 3 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/circular4.jpg" alt="کارگاه های تابستانی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>کارگاه های تابستانی</h3>
+                                <p>فراخوان شرکت در دوره های تابستانه توانمندسازی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev" onclick="innerSliders['circular'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next" onclick="innerSliders['circular'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -689,42 +736,48 @@
         
         <div class="inner-slider">
             <div class="inner-slides">
-                <!-- اسلاید داخلی 1 - قابل کلیک -->
-                <div class="inner-slide active" onclick="window.open('#', '_blank')">
-                    <img src="images/content2.jpg" alt="محتوای چندرسانه ای">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>محتوای چندرسانه ای</h3>
-                            <p>انیمیشن ها و فیلم های آموزشی تولید شده توسط معلمان</p>
+                <!-- اسلاید داخلی 1 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/content2.jpg" alt="محتوای چندرسانه ای">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>محتوای چندرسانه ای</h3>
+                                <p>انیمیشن ها و فیلم های آموزشی تولید شده توسط معلمان</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 2 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/content3.jpg" alt="بسته های آموزشی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>بسته های آموزشی</h3>
-                            <p>مجموعه کامل آموزشی برای دروس مختلف</p>
+                <!-- اسلاید داخلی 2 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/content3.jpg" alt="بسته های آموزشی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>بسته های آموزشی</h3>
+                                <p>مجموعه کامل آموزشی برای دروس مختلف</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 
-                <!-- اسلاید داخلی 3 - قابل کلیک -->
-                <div class="inner-slide" onclick="window.open('#', '_blank')">
-                    <img src="images/content4.jpg" alt="نرم افزارهای آموزشی">
-                    <div class="inner-slide-overlay">
-                        <div class="inner-slide-content">
-                            <h3>نرم افزارهای آموزشی</h3>
-                            <p>اپلیکیشن ها و نرم افزارهای کمک آموزشی</p>
+                <!-- اسلاید داخلی 3 -->
+                <div class="inner-slide">
+                    <a href="#" class="inner-slide-link" target="_blank">
+                        <img src="images/content4.jpg" alt="نرم افزارهای آموزشی">
+                        <div class="inner-slide-overlay">
+                            <div class="inner-slide-content">
+                                <h3>نرم افزارهای آموزشی</h3>
+                                <p>اپلیکیشن ها و نرم افزارهای کمک آموزشی</p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
             <div class="inner-slider-nav">
-                <button class="inner-prev" onclick="innerSliders['content'].prevSlide()"><i class="fas fa-chevron-right"></i></button>
-                <button class="inner-next" onclick="innerSliders['content'].nextSlide()"><i class="fas fa-chevron-left"></i></button>
+                <button class="inner-prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="inner-next"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -746,31 +799,35 @@
             });
             document.getElementById(pageId).classList.add('active');
             
-            // توقف اسلایدر صفحه اصلی وقتی صفحه عوض می‌شود
             if (pageId !== 'main-page') {
                 clearInterval(mainSlider.interval);
             } else {
-                // راه اندازی مجدد اسلایدر اصلی وقتی به صفحه اصلی بازمی‌گردیم
                 mainSlider.startAutoSlide();
             }
         }
 
-        // اسلایدر اصلی
+        // اسلایدر اصلی - کد کاملاً بازنویسی شده
         const mainSlider = {
-            slides: document.querySelector('.slides'),
-            slideItems: document.querySelectorAll('.slide'),
-            prevBtn: document.querySelector('.prev'),
-            nextBtn: document.querySelector('.next'),
             currentSlide: 0,
-            totalSlides: document.querySelectorAll('.slide').length,
             interval: null,
+            isAnimating: false,
 
             init() {
+                this.slides = document.querySelector('.slides');
+                this.slideItems = document.querySelectorAll('.slide');
+                this.prevBtn = document.querySelector('.slider .prev');
+                this.nextBtn = document.querySelector('.slider .next');
+                this.totalSlides = this.slideItems.length;
+
+                // مقداردهی اولیه موقعیت اسلایدها
+                this.slides.style.transform = 'translateX(0%)';
+
                 this.prevBtn.addEventListener('click', () => this.prevSlide());
                 this.nextBtn.addEventListener('click', () => this.nextSlide());
+                
                 this.startAutoSlide();
                 
-                // توقف اسلایدر وقتی ماوس روی آن است
+                // توقف هنگام هاور
                 const slider = document.querySelector('.slider');
                 slider.addEventListener('mouseenter', () => {
                     clearInterval(this.interval);
@@ -782,130 +839,129 @@
 
             startAutoSlide() {
                 clearInterval(this.interval);
-                this.interval = setInterval(() => this.nextSlide(), 4000);
+                this.interval = setInterval(() => {
+                    this.nextSlide();
+                }, 4000);
             },
 
             nextSlide() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+                
                 this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
                 this.updateSlider();
+                
+                setTimeout(() => {
+                    this.isAnimating = false;
+                }, 500);
             },
 
             prevSlide() {
+                if (this.isAnimating) return;
+                this.isAnimating = true;
+                
                 this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
                 this.updateSlider();
+                
+                setTimeout(() => {
+                    this.isAnimating = false;
+                }, 500);
             },
 
             updateSlider() {
-                this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
+                const translateX = this.currentSlide * -100;
+                this.slides.style.transform = `translateX(${translateX}%)`;
             }
         };
 
-        // اسلایدرهای داخلی
+        // اسلایدرهای داخلی - کد کاملاً بازنویسی شده
         const innerSliders = {
-            'download': {
-                slides: null,
-                currentSlide: 0,
-                totalSlides: 3,
-                interval: null,
+            init() {
+                const innerSliders = document.querySelectorAll('.inner-slider');
                 
-                init() {
-                    this.slides = document.querySelector('#download-page .inner-slides');
-                    this.startAutoSlide();
-                },
-                
-                startAutoSlide() {
-                    clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 4500);
-                },
-                
-                nextSlide() {
-                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                prevSlide() {
-                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                updateSlider() {
-                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
-                }
-            },
-            
-            'circular': {
-                slides: null,
-                currentSlide: 0,
-                totalSlides: 3,
-                interval: null,
-                
-                init() {
-                    this.slides = document.querySelector('#circular-page .inner-slides');
-                    this.startAutoSlide();
-                },
-                
-                startAutoSlide() {
-                    clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 4500);
-                },
-                
-                nextSlide() {
-                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                prevSlide() {
-                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                updateSlider() {
-                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
-                }
-            },
-            
-            'content': {
-                slides: null,
-                currentSlide: 0,
-                totalSlides: 3,
-                interval: null,
-                
-                init() {
-                    this.slides = document.querySelector('#content-page .inner-slides');
-                    this.startAutoSlide();
-                },
-                
-                startAutoSlide() {
-                    clearInterval(this.interval);
-                    this.interval = setInterval(() => this.nextSlide(), 4500);
-                },
-                
-                nextSlide() {
-                    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                prevSlide() {
-                    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-                    this.updateSlider();
-                },
-                
-                updateSlider() {
-                    this.slides.style.transform = `translateX(${this.currentSlide * -100}%)`;
-                }
+                innerSliders.forEach((slider) => {
+                    const slides = slider.querySelector('.inner-slides');
+                    const slideItems = slider.querySelectorAll('.inner-slide');
+                    const prevBtn = slider.querySelector('.inner-prev');
+                    const nextBtn = slider.querySelector('.inner-next');
+                    let currentSlide = 0;
+                    const totalSlides = slideItems.length;
+                    let interval;
+                    let isAnimating = false;
+
+                    // مقداردهی اولیه موقعیت اسلایدها
+                    slides.style.transform = 'translateX(0%)';
+
+                    function updateSlider() {
+                        const translateX = currentSlide * -100;
+                        slides.style.transform = `translateX(${translateX}%)`;
+                    }
+
+                    function nextSlide() {
+                        if (isAnimating) return;
+                        isAnimating = true;
+                        
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        updateSlider();
+                        
+                        setTimeout(() => {
+                            isAnimating = false;
+                        }, 500);
+                    }
+
+                    function prevSlide() {
+                        if (isAnimating) return;
+                        isAnimating = true;
+                        
+                        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                        updateSlider();
+                        
+                        setTimeout(() => {
+                            isAnimating = false;
+                        }, 500);
+                    }
+
+                    // دکمه‌های ناوبری
+                    prevBtn.addEventListener('click', () => {
+                        prevSlide();
+                        restartAutoSlide();
+                    });
+                    
+                    nextBtn.addEventListener('click', () => {
+                        nextSlide();
+                        restartAutoSlide();
+                    });
+
+                    function startAutoSlide() {
+                        clearInterval(interval);
+                        interval = setInterval(nextSlide, 4500);
+                    }
+
+                    function restartAutoSlide() {
+                        clearInterval(interval);
+                        startAutoSlide();
+                    }
+
+                    // راه اندازی اولیه
+                    startAutoSlide();
+                    updateSlider();
+
+                    // توقف هنگام هاور
+                    slider.addEventListener('mouseenter', () => {
+                        clearInterval(interval);
+                    });
+                    
+                    slider.addEventListener('mouseleave', () => {
+                        startAutoSlide();
+                    });
+                });
             }
         };
 
         // راه اندازی اسلایدرها
         document.addEventListener('DOMContentLoaded', function() {
             mainSlider.init();
-            
-            // راه اندازی اسلایدرهای داخلی
-            innerSliders.download.init();
-            innerSliders.circular.init();
-            innerSliders.content.init();
-            
-            console.log('سایت سرگروه های آموزشی استان کرمان بارگذاری شد');
+            innerSliders.init();
         });
     </script>
 </body>
