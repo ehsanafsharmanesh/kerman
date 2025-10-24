@@ -1101,83 +1101,35 @@
         <p>توسعه‌ و اجرا: احسان افشارمنش(سرگروه مشاوره استان کرمان) © 1405-1404</p>
     </footer>
 
-   // اسلایدر اصلی - نسخه اصلاح شده
+  // اسلایدر اصلی - نسخه بسیار ساده
 let currentSlide = 0;
 const slides = document.querySelectorAll('.slide');
 const totalSlides = slides.length;
-let slideInterval;
 
-function updateSlider() {
+function showSlide(n) {
     const slidesContainer = document.querySelector('.slides');
-    if (slidesContainer) {
-        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-        console.log('🔹 اسلاید تغییر کرد به:', currentSlide + 1); // دیباگ
-    }
+    currentSlide = (n + totalSlides) % totalSlides;
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
 }
 
-function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-}
-
-function startAutoSlide() {
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextSlide, 4000);
-    console.log('🔹 اسلایدر اتوماتیک شروع شد'); // دیباگ
-}
-
-function stopAutoSlide() {
-    clearInterval(slideInterval);
-    console.log('🔹 اسلایدر متوقف شد'); // دیباگ
-}
-
-// راه‌اندازی اسلایدر
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 DOM آماده شد. تعداد اسلایدها:', totalSlides);
+    // راه‌اندازی اولیه
+    showSlide(0);
     
-    // بررسی وجود المان‌ها
-    const nextBtn = document.querySelector('.next');
-    const prevBtn = document.querySelector('.prev');
-    const slidesContainer = document.querySelector('.slides');
+    // اتوماتیک
+    setInterval(() => {
+        showSlide(currentSlide + 1);
+    }, 4000);
     
-    console.log('🔍 المان‌های پیدا شده:');
-    console.log('- nextBtn:', nextBtn);
-    console.log('- prevBtn:', prevBtn);
-    console.log('- slidesContainer:', slidesContainer);
-    console.log('- totalSlides:', totalSlides);
+    // دکمه‌ها
+    document.querySelector('.next').addEventListener('click', () => {
+        showSlide(currentSlide + 1);
+    });
     
-    if (slidesContainer && nextBtn && prevBtn && totalSlides > 0) {
-        updateSlider();
-        startAutoSlide();
-
-        // دکمه‌های ناوبری - انتخابگر اصلاح شده
-        nextBtn.addEventListener('click', () => {
-            console.log('👉 دکمه بعدی کلیک شد');
-            nextSlide();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-
-        prevBtn.addEventListener('click', () => {
-            console.log('👈 دکمه قبلی کلیک شد');
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateSlider();
-            stopAutoSlide();
-            startAutoSlide();
-        });
-
-        // توقف اسلایدر هنگام هاور
-        const slider = document.querySelector('.slider');
-        if (slider) {
-            slider.addEventListener('mouseenter', stopAutoSlide);
-            slider.addEventListener('mouseleave', startAutoSlide);
-        }
-        
-    } else {
-        console.error('❌ المان‌های اسلایدر پیدا نشدند!');
-    }
-});       
-            // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
+    document.querySelector('.prev').addEventListener('click', () => {
+        showSlide(currentSlide - 1);
+    });
+});            // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
             downloadItems.forEach((item, index) => {
                 const carouselItem = document.createElement('a');
                 carouselItem.href = item.link;
@@ -1338,4 +1290,5 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
+
 
