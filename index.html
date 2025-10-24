@@ -1101,35 +1101,123 @@
         <p>توسعه‌ و اجرا: احسان افشارمنش(سرگروه مشاوره استان کرمان) © 1405-1404</p>
     </footer>
 
-  // اسلایدر اصلی - نسخه بسیار ساده
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
-const totalSlides = slides.length;
+    <script>
+        // اسلایدر اصلی - کاملاً بازنویسی شده
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        let slideInterval;
 
-function showSlide(n) {
-    const slidesContainer = document.querySelector('.slides');
-    currentSlide = (n + totalSlides) % totalSlides;
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-}
+        function updateSlider() {
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // راه‌اندازی اولیه
-    showSlide(0);
-    
-    // اتوماتیک
-    setInterval(() => {
-        showSlide(currentSlide + 1);
-    }, 4000);
-    
-    // دکمه‌ها
-    document.querySelector('.next').addEventListener('click', () => {
-        showSlide(currentSlide + 1);
-    });
-    
-    document.querySelector('.prev').addEventListener('click', () => {
-        showSlide(currentSlide - 1);
-    });
-});            // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function startAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000); // تغییر اسلاید هر 4 ثانیه
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        // راه‌اندازی اسلایدر
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSlider();
+            startAutoSlide();
+
+            // دکمه‌های ناوبری
+            document.querySelector('.slider-nav .next').addEventListener('click', () => {
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+
+            document.querySelector('.slider-nav .prev').addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+
+            // توقف اسلایدر هنگام هاور
+            const slider = document.querySelector('.slider');
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+        });
+
+        // نمایش صفحات
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+            
+            // اگر صفحه دارای چرخش لینک‌ها است، آن را راه‌اندازی کن
+            if (pageId === 'download-page') {
+                initDownloadCarousel();
+            } else if (pageId === 'circular-page') {
+                initCircularCarousel();
+            } else if (pageId === 'content-page') {
+                initContentCarousel();
+            }
+        }
+
+        // چرخش لینک‌ها برای صفحه دانلود
+        function initDownloadCarousel() {
+            const carouselInner = document.getElementById('download-carousel');
+            if (!carouselInner) return;
+            
+            // پاک کردن محتوای قبلی
+            carouselInner.innerHTML = '';
+            
+            // داده‌های نمونه برای لینک‌های دانلود
+            const downloadItems = [
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'فرم بازدید مدارس', 
+                    desc: 'ویژه مدارس ابتدایی',
+                    link: 'https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm'
+                },
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'فرم بازدید مدارس', 
+                    desc: 'ویژه متوسطه اول',
+                    link: 'https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm'
+                },
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'فرم بازدید مدارس', 
+                    desc: 'ویژه متوسطه دوم',
+                    link: 'https://drive.google.com/uc?export=download&id=1WazinDMbFirene8vt-2zU_ll3sNMRAp9'
+                },
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'نمون برگ بازدید', 
+                    desc: 'فعالیت‌های سرگروه منطقه',
+                    link: 'https://drive.google.com/uc?export=download&id=115lQADR1-EAVhWTiusGl9l6LDyzbOZvL'
+                },
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'پوشه کار مشاور', 
+                    desc: 'ویژه مشاوران مدارس',
+                    link: 'https://drive.google.com/uc?export=download&id=1uPh_oINA6nuGvpln7Cjv_EtZ1cBBQ1MS'
+                },
+                { 
+                    icon: 'fas fa-file-pdf', 
+                    title: 'ارزیابی فعالیت مشاوران', 
+                    desc: 'ویژه بازگشایی مدارس',
+                    link: 'https://drive.google.com/uc?export=download&id=1vEd22aF6RLLmYyZxiT20kF26bLFQz_KM'
+                }
+            ];
+            
+            // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
             downloadItems.forEach((item, index) => {
                 const carouselItem = document.createElement('a');
                 carouselItem.href = item.link;
@@ -1290,5 +1378,3 @@ document.addEventListener('DOMContentLoaded', function() {
     </script>
 </body>
 </html>
-
-
