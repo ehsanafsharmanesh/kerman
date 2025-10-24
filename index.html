@@ -1101,122 +1101,82 @@
         <p>توسعه‌ و اجرا: احسان افشارمنش(سرگروه مشاوره استان کرمان) © 1405-1404</p>
     </footer>
 
-    <script>
-        // اسلایدر اصلی - کاملاً بازنویسی شده
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const totalSlides = slides.length;
-        let slideInterval;
+   // اسلایدر اصلی - نسخه اصلاح شده
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+let slideInterval;
 
-        function updateSlider() {
-            const slidesContainer = document.querySelector('.slides');
-            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-        }
+function updateSlider() {
+    const slidesContainer = document.querySelector('.slides');
+    if (slidesContainer) {
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        console.log('🔹 اسلاید تغییر کرد به:', currentSlide + 1); // دیباگ
+    }
+}
 
-        function nextSlide() {
-            currentSlide = (currentSlide + 1) % totalSlides;
-            updateSlider();
-        }
+function nextSlide() {
+    currentSlide = (currentSlide + 1) % totalSlides;
+    updateSlider();
+}
 
-        function startAutoSlide() {
-            clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 4000); // تغییر اسلاید هر 4 ثانیه
-        }
+function startAutoSlide() {
+    clearInterval(slideInterval);
+    slideInterval = setInterval(nextSlide, 4000);
+    console.log('🔹 اسلایدر اتوماتیک شروع شد'); // دیباگ
+}
 
-        function stopAutoSlide() {
-            clearInterval(slideInterval);
-        }
+function stopAutoSlide() {
+    clearInterval(slideInterval);
+    console.log('🔹 اسلایدر متوقف شد'); // دیباگ
+}
 
-        // راه‌اندازی اسلایدر
-        document.addEventListener('DOMContentLoaded', function() {
-            updateSlider();
+// راه‌اندازی اسلایدر
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 DOM آماده شد. تعداد اسلایدها:', totalSlides);
+    
+    // بررسی وجود المان‌ها
+    const nextBtn = document.querySelector('.next');
+    const prevBtn = document.querySelector('.prev');
+    const slidesContainer = document.querySelector('.slides');
+    
+    console.log('🔍 المان‌های پیدا شده:');
+    console.log('- nextBtn:', nextBtn);
+    console.log('- prevBtn:', prevBtn);
+    console.log('- slidesContainer:', slidesContainer);
+    console.log('- totalSlides:', totalSlides);
+    
+    if (slidesContainer && nextBtn && prevBtn && totalSlides > 0) {
+        updateSlider();
+        startAutoSlide();
+
+        // دکمه‌های ناوبری - انتخابگر اصلاح شده
+        nextBtn.addEventListener('click', () => {
+            console.log('👉 دکمه بعدی کلیک شد');
+            nextSlide();
+            stopAutoSlide();
             startAutoSlide();
-
-            // دکمه‌های ناوبری
-            document.querySelector('.slider-nav .next').addEventListener('click', () => {
-                nextSlide();
-                stopAutoSlide();
-                startAutoSlide();
-            });
-
-            document.querySelector('.slider-nav .prev').addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateSlider();
-                stopAutoSlide();
-                startAutoSlide();
-            });
-
-            // توقف اسلایدر هنگام هاور
-            const slider = document.querySelector('.slider');
-            slider.addEventListener('mouseenter', stopAutoSlide);
-            slider.addEventListener('mouseleave', startAutoSlide);
         });
 
-        // نمایش صفحات
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-            
-            // اگر صفحه دارای چرخش لینک‌ها است، آن را راه‌اندازی کن
-            if (pageId === 'download-page') {
-                initDownloadCarousel();
-            } else if (pageId === 'circular-page') {
-                initCircularCarousel();
-            } else if (pageId === 'content-page') {
-                initContentCarousel();
-            }
-        }
+        prevBtn.addEventListener('click', () => {
+            console.log('👈 دکمه قبلی کلیک شد');
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+            stopAutoSlide();
+            startAutoSlide();
+        });
 
-        // چرخش لینک‌ها برای صفحه دانلود
-        function initDownloadCarousel() {
-            const carouselInner = document.getElementById('download-carousel');
-            if (!carouselInner) return;
-            
-            // پاک کردن محتوای قبلی
-            carouselInner.innerHTML = '';
-            
-            // داده‌های نمونه برای لینک‌های دانلود
-            const downloadItems = [
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'فرم بازدید مدارس', 
-                    desc: 'ویژه مدارس ابتدایی',
-                    link: 'https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm'
-                },
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'فرم بازدید مدارس', 
-                    desc: 'ویژه متوسطه اول',
-                    link: 'https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm'
-                },
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'فرم بازدید مدارس', 
-                    desc: 'ویژه متوسطه دوم',
-                    link: 'https://drive.google.com/uc?export=download&id=1WazinDMbFirene8vt-2zU_ll3sNMRAp9'
-                },
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'نمون برگ بازدید', 
-                    desc: 'فعالیت‌های سرگروه منطقه',
-                    link: 'https://drive.google.com/uc?export=download&id=115lQADR1-EAVhWTiusGl9l6LDyzbOZvL'
-                },
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'پوشه کار مشاور', 
-                    desc: 'ویژه مشاوران مدارس',
-                    link: 'https://drive.google.com/uc?export=download&id=1uPh_oINA6nuGvpln7Cjv_EtZ1cBBQ1MS'
-                },
-                { 
-                    icon: 'fas fa-file-pdf', 
-                    title: 'ارزیابی فعالیت مشاوران', 
-                    desc: 'ویژه بازگشایی مدارس',
-                    link: 'https://drive.google.com/uc?export=download&id=1vEd22aF6RLLmYyZxiT20kF26bLFQz_KM'
-                }
-            ];
-            
+        // توقف اسلایدر هنگام هاور
+        const slider = document.querySelector('.slider');
+        if (slider) {
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+        }
+        
+    } else {
+        console.error('❌ المان‌های اسلایدر پیدا نشدند!');
+    }
+});       
             // ایجاد آیتم‌های چرخشی با لینک‌های واقعی
             downloadItems.forEach((item, index) => {
                 const carouselItem = document.createElement('a');
@@ -1378,3 +1338,4 @@
     </script>
 </body>
 </html>
+
