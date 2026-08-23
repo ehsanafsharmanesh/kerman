@@ -21,6 +21,72 @@
             min-height: 100vh;
         }
 
+        /* صفحه لودینگ */
+        #loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(102, 126, 234, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        #loading-overlay p {
+            color: white;
+            margin-top: 1rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* دکمه شیشه‌ای شناور هوم */
+        .glass-home-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 50px;
+            padding: 0.8rem 1.4rem;
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.25);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .glass-home-btn:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: translateY(-3px) scale(1.03);
+            box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35);
+        }
+
         /* هدر اصلی */
         .main-header {
             background: rgba(255,255,255,0.95);
@@ -36,7 +102,6 @@
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .main-header p {
@@ -49,18 +114,19 @@
         /* اسلایدر اصلی */
         .slider {
             position: relative;
-            height: 400px;
+            height: 420px;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            border-radius: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             margin: 1.5rem auto;
             max-width: 1200px;
             width: 95%;
+            touch-action: pan-y;
         }
 
         .slides {
             display: flex;
-            transition: transform 0.5s ease-in-out;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
             height: 100%;
             width: 100%;
         }
@@ -94,7 +160,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+            background: linear-gradient(45deg, rgba(0,0,0,0.65), rgba(0,0,0,0.25));
             display: flex;
             align-items: flex-end;
             justify-content: flex-start;
@@ -105,7 +171,7 @@
             color: white;
             text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
             text-align: right;
-            max-width: 70%;
+            max-width: 75%;
         }
 
         .slide-content h2 {
@@ -120,39 +186,160 @@
             opacity: 0.9;
         }
 
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            width: 100%;
+        /* استایل گرافیکی اسلاید روزشمار هفته بهداشت روان */
+        .countdown-slide {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #680582 100%);
             display: flex;
-            justify-content: space-between;
-            padding: 0 1rem;
-            transform: translateY(-50%);
-            z-index: 10;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
         }
 
+        .countdown-slide::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 10%, transparent 60%);
+            animation: rotateBG 20s linear infinite;
+        }
+
+        @keyframes rotateBG {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .countdown-header {
+            z-index: 2;
+            margin-bottom: 1.2rem;
+        }
+
+        .countdown-header h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #ffd700;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .countdown-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+            margin-top: 0.3rem;
+            font-weight: 300;
+        }
+
+        .timer-container {
+            display: flex;
+            gap: 1rem;
+            z-index: 2;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .timer-box {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 1rem 1.2rem;
+            min-width: 95px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .timer-box:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .timer-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffffff;
+            line-height: 1.1;
+            font-family: 'Vazirmatn', sans-serif;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .timer-label {
+            font-size: 0.85rem;
+            color: #e0e0e0;
+            margin-top: 0.4rem;
+            font-weight: 400;
+        }
+
+        /* دکمه‌های کنترل اسلایدر */
         .slider-nav button {
-            background: rgba(255,255,255,0.8);
-            border: none;
-            width: 45px;
-            height: 45px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-size: 1.1rem;
-            color: #333;
+            font-size: 1.2rem;
+            color: white;
+            z-index: 20;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
+
+        .slider-nav button.prev { right: 15px; }
+        .slider-nav button.next { left: 15px; }
 
         .slider-nav button:hover {
+            background: rgba(255, 255, 255, 0.85);
+            color: #333;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
+            z-index: 20;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
             background: white;
-            transform: scale(1.1);
+            width: 28px;
+            border-radius: 10px;
         }
 
-        /* باکس های اصلی */
-        .container {
-            padding: 1.5rem;
-        }
-
+        /* باکس‌ها و صفحات */
+        .container { padding: 1.5rem; }
+        
         .boxes {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -173,7 +360,6 @@
             cursor: pointer;
             text-decoration: none;
             color: inherit;
-            display: block;
         }
 
         .box:hover {
@@ -185,26 +371,11 @@
             font-size: 2.5rem;
             color: #667eea;
             margin-bottom: 1rem;
-            transition: all 0.3s ease;
         }
 
-        .box:hover i {
-            transform: scale(1.1);
-            color: #764ba2;
-        }
+        .box h3 { font-size: 1.3rem; margin-bottom: 0.8rem; color: #333; }
+        .box p { color: #666; font-size: 0.9rem; }
 
-        .box h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.8rem;
-            color: #333;
-        }
-
-        .box p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-
-        /* صفحات داخلی */
         .page {
             display: none;
             padding: 1.5rem;
@@ -212,14 +383,11 @@
             margin: 0 auto;
         }
 
-        .page.active {
-            display: block;
-        }
+        .page.active { display: block; }
 
         .page-header {
             text-align: center;
             margin-bottom: 2rem;
-            position: relative;
         }
 
         .page-header h2 {
@@ -234,43 +402,35 @@
             color: rgba(255,255,255,0.9);
         }
 
-        /* دکمه بازگشت جدید */
         .back-btn-container {
             text-align: center;
             margin: 1rem 0 2rem 0;
         }
 
-        .back-btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none;
-            padding: 1rem 2rem;
+        .glass-btn {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 0.9rem 2.2rem;
             border-radius: 50px;
             cursor: pointer;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 700;
             color: white;
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.6rem;
             text-decoration: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
-        .back-btn:hover {
+        .glass-btn:hover {
+            background: rgba(255, 255, 255, 0.35);
             transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-            animation: none;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
-        }
-
-        /* لینک های مفید */
         .links-section {
             padding: 3rem 1.5rem;
             background: rgba(255,255,255,0.1);
@@ -284,7 +444,6 @@
             color: white;
             font-size: 2rem;
             margin-bottom: 2rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .links-grid {
@@ -303,7 +462,6 @@
             color: #333;
             text-align: center;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -312,27 +470,15 @@
 
         .link-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
             background: white;
         }
 
-        .link-item i {
-            font-size: 2.2rem;
-            color: #667eea;
-        }
+        .link-item i { font-size: 2.2rem; color: #667eea; }
 
-        .link-item span {
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        /* ساختار کامل ریسپانسیو صفحات داخلی */
         .links-categories {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 1.5rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .category-card {
@@ -341,8 +487,6 @@
             padding: 1.5rem;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            height: fit-content;
         }
 
         .category-header {
@@ -353,17 +497,8 @@
             border-bottom: 2px solid #667eea;
         }
 
-        .category-header i {
-            font-size: 2rem;
-            color: #667eea;
-            margin-left: 1rem;
-        }
-
-        .category-header h3 {
-            font-size: 1.3rem;
-            color: #333;
-            font-weight: 700;
-        }
+        .category-header i { font-size: 2rem; color: #667eea; margin-left: 1rem; }
+        .category-header h3 { font-size: 1.3rem; color: #333; font-weight: 700; }
 
         .category-links {
             display: flex;
@@ -384,21 +519,17 @@
             border-right: 4px solid #667eea;
             word-break: break-word;
             font-size: 0.95rem;
-            line-height: 1.4;
         }
 
-        .category-link:hover, .category-link:active {
+        .category-link:hover {
             background: rgba(102, 126, 234, 0.2);
             transform: translateX(-4px);
         }
 
-        /* کارت‌های شبکه‌ای برای صفحات دانلود و بخشنامه */
         .dynamic-cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 1.2rem;
-            max-width: 1200px;
-            margin: 0 auto;
         }
 
         .custom-card {
@@ -409,38 +540,19 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
             text-decoration: none;
             color: #333;
             transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.3);
         }
 
         .custom-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
             background: #ffffff;
         }
 
-        .custom-card i {
-            font-size: 2.8rem;
-            color: #667eea;
-            margin-bottom: 1rem;
-        }
+        .custom-card i { font-size: 2.8rem; color: #667eea; margin-bottom: 1rem; }
+        .custom-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
 
-        .custom-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: #2d3748;
-        }
-
-        .custom-card p {
-            font-size: 0.9rem;
-            color: #666;
-        }
-
-        /* فوتر */
         footer {
             background: rgba(0,0,0,0.8);
             color: white;
@@ -449,73 +561,37 @@
             margin-top: 3rem;
         }
 
-        footer p {
-            font-size: 1rem;
-        }
-
-        /* ریسپانسیو کاملاً بهینه‌شده */
         @media (max-width: 768px) {
-            .main-header h1 {
-                font-size: 1.5rem;
-            }
-            .main-header p {
-                font-size: 0.9rem;
-            }
-            .slider {
-                height: 250px;
-                margin: 1rem auto;
-            }
-            .slide-content h2 {
-                font-size: 1.2rem;
-            }
-            .slide-content p {
-                font-size: 0.82rem;
-            }
-            .slide-content {
-                max-width: 90%;
-            }
-            .boxes, .links-categories, .dynamic-cards-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            .links-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 0.8rem;
-            }
-            .slider-nav button {
-                width: 35px;
-                height: 35px;
-                font-size: 0.9rem;
-            }
-            .back-btn {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.95rem;
-                width: 90%;
-                justify-content: center;
-            }
-            .category-card {
-                padding: 1rem;
-            }
-            .category-link {
-                font-size: 0.88rem;
-                padding: 0.8rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .links-grid {
-                grid-template-columns: 1fr;
-            }
-            .page-header h2 {
-                font-size: 1.4rem;
-            }
-            .page-header p {
-                font-size: 0.9rem;
-            }
+            .main-header h1 { font-size: 1.5rem; }
+            .slider { height: 320px; }
+            .countdown-header h2 { font-size: 1.3rem; }
+            .countdown-header p { font-size: 0.85rem; }
+            .timer-box { padding: 0.6rem 0.8rem; min-width: 65px; }
+            .timer-number { font-size: 1.4rem; }
+            .timer-label { font-size: 0.72rem; }
+            .slide-content h2 { font-size: 1.2rem; }
+            .slide-content p { font-size: 0.82rem; }
+            .slider-nav button { width: 38px; height: 38px; font-size: 1rem; }
+            .glass-home-btn { bottom: 15px; right: 15px; padding: 0.6rem 1.1rem; font-size: 0.88rem; }
+            .boxes, .links-categories, .dynamic-cards-grid { grid-template-columns: 1fr; }
+            .links-grid { grid-template-columns: repeat(2, 1fr); }
         }
     </style>
 </head>
 <body>
+
+    <!-- صفحه لودینگ اولیه -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p>در حال بارگذاری اطلاعات...</p>
+    </div>
+
+    <!-- دکمه شناور شیشه‌ای هوم -->
+    <a href="javascript:void(0)" class="glass-home-btn" onclick="showPage('main-page')">
+        <i class="fas fa-home"></i>
+        <span>صفحه اصلی</span>
+    </a>
+
     <header class="main-header">
         <h1>سرگروه های آموزشی مشاوره استان کرمان</h1>
         <p>ارتقای کیفیت فعالیت‌های حوزه مشاوره آموزش و پرورش در سراسر استان</p>
@@ -523,15 +599,42 @@
 
     <!-- صفحه اصلی -->
     <div class="page active" id="main-page">
-        <div class="slider">
+        <div class="slider" id="main-slider">
             <div class="slides">
+                
+                <!-- اسلاید اختصاصی روزشمار هفته بهداشت روان -->
+                <div class="slide countdown-slide">
+                    <div class="countdown-header">
+                        <h2><i class="fas fa-brain"></i> روزشمار هفته بهداشت روان</h2>
+                        <p>فرصت باقی‌مانده تا ۱۸ مهرماه (آغاز هفته بهداشت روان)</p>
+                    </div>
+                    <div class="timer-container">
+                        <div class="timer-box">
+                            <div class="timer-number" id="cd-days">00</div>
+                            <div class="timer-label">روز</div>
+                        </div>
+                        <div class="timer-box">
+                            <div class="timer-number" id="cd-hours">00</div>
+                            <div class="timer-label">ساعت</div>
+                        </div>
+                        <div class="timer-box">
+                            <div class="timer-number" id="cd-minutes">00</div>
+                            <div class="timer-label">دقیقه</div>
+                        </div>
+                        <div class="timer-box">
+                            <div class="timer-number" id="cd-seconds">00</div>
+                            <div class="timer-label">ثانیه</div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="slide">
                     <a href="javascript:void(0)" class="slide-link" onclick="showPage('download-page')">
                         <img src="images/education1.jpg" alt="منابع آموزشی">
                         <div class="slide-overlay">
                             <div class="slide-content">
                                 <h2>برگزاری جلسه سرگروه‌های مشاوره استان کرمان </h2>
-                                <p> ماهان 28 مهرماه 1404  </p>
+                                <p>ماهان 28 مهرماه 1404</p>
                             </div>
                         </div>
                     </a>
@@ -567,7 +670,7 @@
                         <div class="slide-overlay">
                             <div class="slide-content">
                                 <h2>دوره اخلاق حرفه ای</h2>
-                                <p>دوره آنلاین و حضوری اخلاق حرفه ای ۲۹ بهمن ماه۱۴۰۴ </p>
+                                <p>دوره آنلاین و حضوری اخلاق حرفه ای ۲۹ بهمن ماه۱۴۰۴</p>
                             </div>
                         </div>
                     </a>
@@ -586,7 +689,7 @@
                 </div>
                 
                 <div class="slide">
-                    <a href="#" class="slide-link" target="_blank">
+                    <a href="#" class="slide-link">
                         <img src="images/consultation1.jpg" alt="مشاوره آموزشی">
                         <div class="slide-overlay">
                             <div class="slide-content">
@@ -597,10 +700,13 @@
                     </a>
                 </div>
             </div>
+
             <div class="slider-nav">
-                <button class="prev"><i class="fas fa-chevron-right"></i></button>
-                <button class="next"><i class="fas fa-chevron-left"></i></button>
+                <button class="prev" title="قبلی"><i class="fas fa-chevron-right"></i></button>
+                <button class="next" title="بعدی"><i class="fas fa-chevron-left"></i></button>
             </div>
+
+            <div class="slider-dots" id="slider-dots"></div>
         </div>
 
         <div class="container">
@@ -608,7 +714,7 @@
                 <a href="javascript:void(0)" class="box" onclick="showPage('download-page')">
                     <i class="fas fa-download"></i>
                     <h3>دانلود فایل‌ سرگروه‌ها</h3>
-                    <p>نمون فرم، فرم بازدید و ...  </p>
+                    <p>نمون فرم، فرم بازدید و ...</p>
                 </a>
                 <a href="javascript:void(0)" class="box" onclick="showPage('circular-page')">
                     <i class="fas fa-bullhorn"></i>
@@ -654,14 +760,12 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
         
-        <div class="dynamic-cards-grid" id="download-cards-container">
-            <!-- کارت‌های دانلود اینجا قرار می‌گیرند -->
-        </div>
+        <div class="dynamic-cards-grid" id="download-cards-container"></div>
     </div>
 
     <!-- صفحه بخشنامه‌ها -->
@@ -672,14 +776,12 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
         
-        <div class="dynamic-cards-grid" id="circular-cards-container">
-            <!-- بخشنامه‌ها اینجا قرار می‌گیرند -->
-        </div>
+        <div class="dynamic-cards-grid" id="circular-cards-container"></div>
     </div>
 
     <!-- صفحه تولید محتوا -->
@@ -690,14 +792,12 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
         
-        <div class="dynamic-cards-grid" id="content-cards-container">
-            <!-- کارت‌های تولید محتوا اینجا قرار می‌گیرند -->
-        </div>
+        <div class="dynamic-cards-grid" id="content-cards-container"></div>
     </div>
 
     <!-- صفحه کتابخانه دیجیتال -->
@@ -708,7 +808,7 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
@@ -756,12 +856,11 @@
                      <a href="https://bayanbox.ir/download/912274052075652559/%D9%87%D9%88%D8%B4.zip" class="category-link" target="_blank"><span>بروشور هوش‌های چندگانه</span> <i class="fas fa-file-archive"></i></a>
                      <a href="https://drive.google.com/uc?export=download&id=1irwUdwITm4a6cA_D6YluIQatMPgnAlSP" class="category-link" target="_blank"><span>جدید: بررسی مشکلات ورود به سامانه آزمون غربالگری</span> <i class="fas fa-download"></i></a>
                      <a href="https://bayanbox.ir/download/9017572992371820668/%D9%BE%D9%88%D8%B4%D9%87-%DA%A9%D8%A7%D8%B1-%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D8%A7%D9%8BD.pdf" class="category-link" target="_blank"><span>پوشه کار مشاوران</span> <i class="fas fa-download"></i></a>
-                     <a href="https://bayanbox.ir/download/6326466287187504068/%D9%87%D9%85%D9%87-%DA%86%DB%8C%D8%B2-%D8%B1%D8%A7%D8%AC%D8%B9-%D8%A8%D9%87-%D9%87%D8%AF%D8%A7%DB%8C%D8%AA-%D8%AA%D8%AD%D8%B5%DB%8C%D9%84%DB%8C.pdf" class="category-link" target="_blank"><span>کتابچه هدایت تحصیلی</span> <i class="fas fa-download"></i></a>
-                     <a href="https://bayanbox.ir/download/468922717583456968/%D9%87%D9%85%DB%8C%D8%A7%D8%B1%D8%A7%D9%86-%DA%A9%D8%B1%D9%85%D8%A7%D9%86.pdf" class="category-link" target="_blank"><span>راهنمای ثبت همیاران</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/6326466287187504068/%D9%87%D9%85%D9%87-%DA%86%DB%8C%D8%B2-%D8%B1%D8%A7%D8%AC%D8%B9-%D8%A8%D9%87-%D9%87%D8%AF%D8%A7%DB%8C%D8%AA-%D8%AA%D8%AD%D8%B5%DB%8C%D9%8D.pdf" class="category-link" target="_blank"><span>کتابچه هدایت تحصیلی</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/468922717583456968/%D9%87%D9%85%DB%8C%D8%A7%D8%B1%D8%A7%D9%8BD-%DA%A9%D8%B1%D9%85%D8%A7%D9%86.pdf" class="category-link" target="_blank"><span>راهنمای ثبت همیاران</span> <i class="fas fa-download"></i></a>
                      <a href="https://bayanbox.ir/download/7290677974956179636/%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C-%D8%B1%D8%BA%D8%A8%D8%AA-%D9%88-%D8%AA%D9%88%D8%A7%D9%86%D8%A7%DB%8C%DB%8C.pdf" class="category-link" target="_blank"><span>راهنمای رغبت و توانایی</span> <i class="fas fa-download"></i></a>
                      <a href="https://bayanbox.ir/download/3279697692918677606/%D8%A7%DB%8C%D8%AC%D8%A7%D8%AF-%D8%B1%D9%85%D8%B2-%D8%AC%D8%AF%DB%8C%D8%AF-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AF%D8%A7%D9%86%D8%B4-%D8%A2%D9%85%D9%88%D8%B2-%D8%A7%D8%B2-%D8%B7%D8%B1%DB%8C%D9%82-%D8%B3%DB%8C%D8%AF%D8%A7.pdf" class="category-link" target="_blank"><span>آموزش ایجاد رمز جدید از سیدای مدیر</span> <i class="fas fa-download"></i></a>
                      <a href="https://bayanbox.ir/download/7154460313579809732/rabetin.pdf" class="category-link" target="_blank"><span>فایل آموزشی رابطان مشاوره</span> <i class="fas fa-download"></i></a>
-                     <a href="#" class="category-link"><span>کیفی</span></a>
                 </div>
             </div>
         </div>
@@ -775,7 +874,7 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
@@ -802,8 +901,6 @@
                 <div class="category-links">
                     <a href="https://www.aparat.com/v/Sz8Yh" class="category-link" target="_blank"><span>آموزش تکمیل پرسشنامه نماد معلمین ابتدایی</span> <i class="fab fa-youtube"></i></a>
                     <a href="https://www.aparat.com/v/wwx4y39" class="category-link" target="_blank"><span>آموزش طریقه انجام رصد و پایش</span> <i class="fab fa-youtube"></i></a>
-                    <a href="#" class="category-link"><span>تدریس فارسی پایه نهم</span></a>
-                    <a href="#" class="category-link"><span>تدریس انگلیسی پایه دهم</span></a>
                 </div>
             </div>
             
@@ -834,7 +931,7 @@
         </div>
 
         <div class="back-btn-container">
-            <button class="back-btn" onclick="showPage('main-page')">
+            <button class="glass-btn" onclick="showPage('main-page')">
                 <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
             </button>
         </div>
@@ -882,19 +979,87 @@
     </div>
 
     <footer>
-        <p>توسعه‌ و اجرا: احسان افشارمنش(سرگروه مشاوره استان کرمان) © 1405-1404</p>
+        <p>توسعه‌ و اجرا: احسان افشارمنش (سرگروه مشاوره استان کرمان) © 1405-1404</p>
     </footer>
 
     <script>
-        // اسلایدر اصلی
+        // لودینگ اولیه
+        window.addEventListener('load', () => {
+            const overlay = document.getElementById('loading-overlay');
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 500);
+        });
+
+        // الگوریتم محاسبه خودکار روزشمار تا ۱۸ مهرماه
+        function startCountdown() {
+            function updateTimer() {
+                const now = new Date();
+                let currentYear = now.getFullYear();
+                
+                // تاریخ ۱۸ مهرماه (10 October)
+                let targetDate = new Date(currentYear, 9, 10, 0, 0, 0);
+
+                // اگر از ۱۸ مهر امسال گذشته بود، تاریخ ۱۸ مهر سال بعد محاسبه می‌شود
+                if (now > targetDate) {
+                    targetDate = new Date(currentYear + 1, 9, 10, 0, 0, 0);
+                }
+
+                const diff = targetDate - now;
+
+                if (diff <= 0) {
+                    document.getElementById('cd-days').innerText = "00";
+                    document.getElementById('cd-hours').innerText = "00";
+                    document.getElementById('cd-minutes').innerText = "00";
+                    document.getElementById('cd-seconds').innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cd-days').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('cd-hours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('cd-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById('cd-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
+        }
+
+        // موتور اسلایدر اصلی
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const totalSlides = slides.length;
+        const slidesContainer = document.querySelector('.slides');
+        const dotsContainer = document.getElementById('slider-dots');
         let slideInterval;
 
+        slides.forEach((_, idx) => {
+            const dot = document.createElement('div');
+            dot.classList.add('dot');
+            if (idx === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => goToSlide(idx));
+            dotsContainer.appendChild(dot);
+        });
+
+        const dots = document.querySelectorAll('.dot');
+
         function updateSlider() {
-            const slidesContainer = document.querySelector('.slides');
             slidesContainer.style.transform = `translateX(${currentSlide * 100}%)`;
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetTimer();
         }
 
         function nextSlide() {
@@ -902,43 +1067,58 @@
             updateSlider();
         }
 
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        }
+
         function startAutoSlide() {
             clearInterval(slideInterval);
-            slideInterval = setInterval(nextSlide, 4000);
+            slideInterval = setInterval(nextSlide, 5000);
         }
 
-        function stopAutoSlide() {
+        function resetTimer() {
             clearInterval(slideInterval);
+            startAutoSlide();
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            updateSlider();
-            startAutoSlide();
-
-            document.querySelector('.slider-nav .next').addEventListener('click', () => {
-                nextSlide();
-                stopAutoSlide();
-                startAutoSlide();
-            });
-
-            document.querySelector('.slider-nav .prev').addEventListener('click', () => {
-                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-                updateSlider();
-                stopAutoSlide();
-                startAutoSlide();
-            });
-
-            const slider = document.querySelector('.slider');
-            slider.addEventListener('mouseenter', stopAutoSlide);
-            slider.addEventListener('mouseleave', startAutoSlide);
-
-            // رندر کامل کارت‌های دانلود
-            renderDownloadCards();
-            // رندر کامل بخشنامه‌ها
-            renderCircularCards();
-            // رندر کامل تولید محتوا
-            renderContentCards();
+        document.querySelector('.slider-nav .next').addEventListener('click', () => {
+            prevSlide();
+            resetTimer();
         });
+
+        document.querySelector('.slider-nav .prev').addEventListener('click', () => {
+            nextSlide();
+            resetTimer();
+        });
+
+        const sliderElement = document.getElementById('main-slider');
+        sliderElement.addEventListener('mouseenter', () => clearInterval(slideInterval));
+        sliderElement.addEventListener('mouseleave', startAutoSlide);
+
+        // لمس زنده در موبایل (Touch Swipe)
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        sliderElement.addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        sliderElement.addEventListener('touchend', e => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                prevSlide();
+                resetTimer();
+            } else if (touchEndX - touchStartX > threshold) {
+                nextSlide();
+                resetTimer();
+            }
+        }
 
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -951,7 +1131,6 @@
             }
         }
 
-        // رندر کردن تمامی فایل‌های دانلود (بدون محدودیت)
         function renderDownloadCards() {
             const container = document.getElementById('download-cards-container');
             if (!container) return;
@@ -976,7 +1155,6 @@
             `).join('');
         }
 
-        // رندر بخشنامه‌ها
         function renderCircularCards() {
             const container = document.getElementById('circular-cards-container');
             if (!container) return;
@@ -998,7 +1176,6 @@
             `).join('');
         }
 
-        // رندر تولید محتوا
         function renderContentCards() {
             const container = document.getElementById('content-cards-container');
             if (!container) return;
@@ -1019,6 +1196,15 @@
                 </a>
             `).join('');
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            startCountdown();
+            updateSlider();
+            startAutoSlide();
+            renderDownloadCards();
+            renderCircularCards();
+            renderContentCards();
+        });
     </script>
 </body>
 </html>
