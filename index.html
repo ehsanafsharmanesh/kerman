@@ -2,25 +2,15 @@
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>سرگروه های آموزشی مشاوره استان کرمان</title>
-    
-    <!-- PWA & Mobile Meta Tags -->
-    <meta name="theme-color" content="#764ba2">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="مشاوره کرمان">
-    
-    <!-- External Resources -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
         }
 
         body {
@@ -29,91 +19,43 @@
             color: #333;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding-bottom: 70px;
-        }
-
-        /* Splash Screen (۵ ثانیه لودینگ اولیه) */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: #121212;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        #splash-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
-
-        .splash-logo {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 0 30px rgba(118, 75, 162, 0.6);
-            animation: pulseLogo 2s infinite ease-in-out;
-        }
-
-        .splash-logo i {
-            font-size: 3.5rem;
-            color: white;
-        }
-
-        .splash-title {
-            color: white;
-            margin-top: 20px;
-            font-weight: 700;
-            font-size: 1.2rem;
-        }
-
-        @keyframes pulseLogo {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
         }
 
         /* هدر اصلی */
         .main-header {
             background: rgba(255,255,255,0.95);
-            padding: 1.2rem 1rem;
+            padding: 1.5rem 0;
             text-align: center;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             backdrop-filter: blur(10px);
         }
 
         .main-header h1 {
-            font-size: 1.6rem;
+            font-size: 2.2rem;
             font-weight: 900;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
         }
 
         .main-header p {
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             color: #666;
-            margin-top: 0.2rem;
+            margin-top: 0.5rem;
+            font-weight: 300;
         }
 
         /* اسلایدر اصلی */
         .slider {
             position: relative;
-            height: 250px;
+            height: 400px;
             overflow: hidden;
             border-radius: 15px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin: 1rem auto;
-            width: 92%;
+            margin: 1.5rem auto;
+            max-width: 1200px;
+            width: 95%;
         }
 
         .slides {
@@ -134,230 +76,530 @@
             display: block;
             width: 100%;
             height: 100%;
+            cursor: pointer;
+            text-decoration: none;
         }
 
         .slide img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
+            display: block;
         }
 
         .slide-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 70%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.5), rgba(0,0,0,0.2));
             display: flex;
             align-items: flex-end;
-            padding: 1rem;
+            justify-content: flex-start;
+            padding: 1.5rem;
         }
 
         .slide-content {
             color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
             text-align: right;
+            max-width: 70%;
         }
 
-        .slide-content h2 { font-size: 1.2rem; font-weight: 700; }
-        .slide-content p { font-size: 0.85rem; opacity: 0.9; }
+        .slide-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
 
-        /* باکس‌ها و شبکه لینک‌ها */
-        .container { padding: 1rem; }
+        .slide-content p {
+            font-size: 1rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 1rem;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .slider-nav button {
+            background: rgba(255,255,255,0.8);
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: #333;
+        }
+
+        .slider-nav button:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        /* باکس های اصلی */
+        .container {
+            padding: 1.5rem;
+        }
+
         .boxes {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1rem;
+            gap: 1.5rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
         .box {
             background: rgba(255,255,255,0.95);
-            padding: 1.2rem;
+            padding: 1.5rem;
             border-radius: 15px;
             text-align: center;
             box-shadow: 0 8px 25px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            cursor: pointer;
             text-decoration: none;
             color: inherit;
+            display: block;
         }
 
-        .box i { font-size: 2.2rem; color: #667eea; margin-bottom: 0.5rem; }
-        .box h3 { font-size: 1.1rem; color: #333; }
-        .box p { color: #666; font-size: 0.85rem; }
+        .box:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+        }
+
+        .box i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .box:hover i {
+            transform: scale(1.1);
+            color: #764ba2;
+        }
+
+        .box h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: #333;
+        }
+
+        .box p {
+            color: #666;
+            font-size: 0.9rem;
+        }
 
         /* صفحات داخلی */
-        .page { display: none; padding: 1rem; max-width: 1200px; margin: 0 auto; }
-        .page.active { display: block; }
+        .page {
+            display: none;
+            padding: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        .page-header { text-align: center; margin-bottom: 1.5rem; color: white; }
-        .page-header h2 { font-size: 1.5rem; }
+        .page.active {
+            display: block;
+        }
 
-        .back-btn-container { text-align: center; margin-bottom: 1.5rem; }
+        .page-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .page-header h2 {
+            font-size: 2rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 0.8rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+        }
+
+        /* دکمه بازگشت جدید */
+        .back-btn-container {
+            text-align: center;
+            margin: 1rem 0 2rem 0;
+        }
+
         .back-btn {
             background: linear-gradient(45deg, #667eea, #764ba2);
-            border: none; padding: 0.8rem 1.8rem;
-            border-radius: 50px; cursor: pointer;
-            font-size: 1rem; font-weight: 700; color: white;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-/* اصلاح شبکه و لیست لینک‌ها در صفحات داخلی */
-.links-categories {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    width: 100%;
-}
-
-.category-card {
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 15px;
-    padding: 1.2rem;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-}
-
-.category-header {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-    border-bottom: 2px solid #667eea;
-    padding-bottom: 0.5rem;
-}
-
-.category-header i {
-    font-size: 1.5rem;
-    color: #667eea;
-    margin-left: 0.8rem;
-}
-
-.links-list {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
-    max-height: none; /* جلوگیری از برش خوردن لیست */
-}
-
-.category-link {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.8rem 1rem;
-    background: rgba(102, 126, 234, 0.08);
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    border-right: 4px solid #667eea;
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition: background 0.2s ease;
-}
-
-.category-link:active {
-    background: rgba(102, 126, 234, 0.2);
-}
-
-.category-link i {
-    color: #764ba2;
-    font-size: 1rem;
-}
-
-        /* Floating AssistiveTouch Glass Button (شبیه آیفون) */
-        .glass-home-btn {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1.5.dp solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9000;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: white;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            animation: pulse 2s infinite;
         }
 
-        .glass-home-btn i { font-size: 1.5rem; color: white; }
+        .back-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            animation: none;
+        }
 
-        /* منوی شعاعی کشویی هنگام اسکرول به بالا */
-        .circular-radial-menu {
-            position: fixed;
-            bottom: 85px;
-            right: 20px;
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(102, 126, 234, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(102, 126, 234, 0); }
+        }
+
+        /* لینک های مفید */
+        .links-section {
+            padding: 3rem 1.5rem;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .links-section h2 {
+            text-align: center;
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .link-item {
+            background: rgba(255,255,255,0.95);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: #333;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             display: flex;
             flex-direction: column;
-            gap: 12px;
-            z-index: 8999;
-            transform: translateX(120%);
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        .circular-radial-menu.visible { transform: translateX(0); }
-
-        .radial-item {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
             align-items: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            text-decoration: none;
-            color: #764ba2;
-            font-size: 1.2rem;
+            gap: 0.8rem;
         }
 
-        footer { text-align: center; color: white; padding: 1rem; font-size: 0.85rem; }
+        .link-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            background: white;
+        }
+
+        .link-item i {
+            font-size: 2.2rem;
+            color: #667eea;
+        }
+
+        .link-item span {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        /* ساختار کامل ریسپانسیو صفحات داخلی */
+        .links-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            height: fit-content;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .category-header i {
+            font-size: 2rem;
+            color: #667eea;
+            margin-left: 1rem;
+        }
+
+        .category-header h3 {
+            font-size: 1.3rem;
+            color: #333;
+            font-weight: 700;
+        }
+
+        .category-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .category-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.9rem 1rem;
+            background: rgba(102, 126, 234, 0.08);
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.2s ease;
+            border-right: 4px solid #667eea;
+            word-break: break-word;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .category-link:hover, .category-link:active {
+            background: rgba(102, 126, 234, 0.2);
+            transform: translateX(-4px);
+        }
+
+        /* کارت‌های شبکه‌ای برای صفحات دانلود و بخشنامه */
+        .dynamic-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .custom-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .custom-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+            background: #ffffff;
+        }
+
+        .custom-card i {
+            font-size: 2.8rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+
+        .custom-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #2d3748;
+        }
+
+        .custom-card p {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* فوتر */
+        footer {
+            background: rgba(0,0,0,0.8);
+            color: white;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            font-size: 1rem;
+        }
+
+        /* ریسپانسیو کاملاً بهینه‌شده */
+        @media (max-width: 768px) {
+            .main-header h1 {
+                font-size: 1.5rem;
+            }
+            .main-header p {
+                font-size: 0.9rem;
+            }
+            .slider {
+                height: 250px;
+                margin: 1rem auto;
+            }
+            .slide-content h2 {
+                font-size: 1.2rem;
+            }
+            .slide-content p {
+                font-size: 0.82rem;
+            }
+            .slide-content {
+                max-width: 90%;
+            }
+            .boxes, .links-categories, .dynamic-cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .links-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.8rem;
+            }
+            .slider-nav button {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+            .back-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
+                width: 90%;
+                justify-content: center;
+            }
+            .category-card {
+                padding: 1rem;
+            }
+            .category-link {
+                font-size: 0.88rem;
+                padding: 0.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            .page-header h2 {
+                font-size: 1.4rem;
+            }
+            .page-header p {
+                font-size: 0.9rem;
+            }
+        }
     </style>
 </head>
 <body>
-
-    <!-- ۱. Splash Screen ۵ ثانیه‌ای -->
-    <div id="splash-screen">
-        <div class="splash-logo">
-            <i class="fas fa-user-graduate"></i>
-        </div>
-        <div class="splash-title">سرگروه‌های آموزشی مشاوره کرمان</div>
-    </div>
-
-    <!-- ۲. هدر اصلی -->
     <header class="main-header">
         <h1>سرگروه های آموزشی مشاوره استان کرمان</h1>
-        <p>ارتقای کیفیت فعالیت‌های حوزه مشاوره آموزش و پرورش</p>
+        <p>ارتقای کیفیت فعالیت‌های حوزه مشاوره آموزش و پرورش در سراسر استان</p>
     </header>
 
-    <!-- ۳. صفحه اصلی -->
+    <!-- صفحه اصلی -->
     <div class="page active" id="main-page">
         <div class="slider">
             <div class="slides">
                 <div class="slide">
                     <a href="javascript:void(0)" class="slide-link" onclick="showPage('download-page')">
-                        <img src="images/education1.jpg" alt="جلسه">
+                        <img src="images/education1.jpg" alt="منابع آموزشی">
                         <div class="slide-overlay">
                             <div class="slide-content">
-                                <h2>جلسه سرگروه‌های مشاوره استان کرمان</h2>
-                                <p>ماهان - ۲۸ مهرماه ۱۴۰۴</p>
+                                <h2>برگزاری جلسه سرگروه‌های مشاوره استان کرمان </h2>
+                                <p> ماهان 28 مهرماه 1404  </p>
                             </div>
                         </div>
                     </a>
                 </div>
+                
+                <div class="slide">
+                    <a href="javascript:void(0)" class="slide-link" onclick="showPage('circular-page')">
+                        <img src="images/circular1.jpg" alt="بخشنامه های جدید">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>بخشنامه های جدید</h2>
+                                <p>آخرین اطلاعیه ها و دستورالعمل های آموزشی</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="slide">
+                    <a href="javascript:void(0)" class="slide-link" onclick="showPage('content-page')">
+                        <img src="images/content1.jpg" alt="تولید محتوا">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>تولید محتوای آموزشی</h2>
+                                <p>منابع متنوع و جذاب برای معلمان و دانش آموزان</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="slide">
+                    <a href="https://shad.ir/moshaver_kerman/FFJIBAFHIDJHAIA" class="slide-link" target="_blank">
+                        <img src="images/AKHLAGH.jpg" alt="دوره اخلاق حرفه ای">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>دوره اخلاق حرفه ای</h2>
+                                <p>دوره آنلاین و حضوری اخلاق حرفه ای ۲۹ بهمن ماه۱۴۰۴ </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                
                 <div class="slide">
                     <a href="https://shad.ir/moshaver_kerman" class="slide-link" target="_blank">
-                        <img src="images/AKHLAGH.jpg" alt="دوره">
+                        <img src="images/workshop1.jpg" alt="کارگاه های آموزشی">
                         <div class="slide-overlay">
                             <div class="slide-content">
-                                <h2>دوره اخلاق حرفه‌ای</h2>
-                                <p>دوره تخصصی مشاوران</p>
+                                <h2>کارگاه های تخصصی</h2>
+                                <p>برگزاری دوره های آموزشی برای معلمان و مشاوران</p>
                             </div>
                         </div>
                     </a>
                 </div>
+                
+                <div class="slide">
+                    <a href="#" class="slide-link" target="_blank">
+                        <img src="images/consultation1.jpg" alt="مشاوره آموزشی">
+                        <div class="slide-overlay">
+                            <div class="slide-content">
+                                <h2>مشاوره تخصصی</h2>
+                                <p>پشتیبانی و راهنمایی مستمر برای همکاران</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <button class="prev"><i class="fas fa-chevron-right"></i></button>
+                <button class="next"><i class="fas fa-chevron-left"></i></button>
             </div>
         </div>
 
@@ -366,173 +608,417 @@
                 <a href="javascript:void(0)" class="box" onclick="showPage('download-page')">
                     <i class="fas fa-download"></i>
                     <h3>دانلود فایل‌ سرگروه‌ها</h3>
-                    <p>نمون برگ، فرم بازدید و ...</p>
+                    <p>نمون فرم، فرم بازدید و ...  </p>
                 </a>
-                <a href="javascript:void(0)" class="box" onclick="showPage('library-page')">
-                    <i class="fas fa-book-open"></i>
-                    <h3>کتابخانه دیجیتال</h3>
-                    <p>کتب درسی و منابع آموزشی</p>
+                <a href="javascript:void(0)" class="box" onclick="showPage('circular-page')">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>بخشنامه های جدید</h3>
+                    <p>آخرین اطلاعیه ها</p>
                 </a>
-                <a href="javascript:void(0)" class="box" onclick="showPage('video-page')">
+                <a href="javascript:void(0)" class="box" onclick="showPage('content-page')">
+                    <i class="fas fa-palette"></i>
+                    <h3>تولید محتوای مناطق</h3>
+                    <p>محتوای آموزشی اختصاصی</p>
+                </a>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <h2>لینک‌های مفید</h2>
+            <div class="links-grid">
+                <a href="javascript:void(0)" class="link-item" onclick="showPage('library-page')">
+                    <i class="fas fa-book"></i>
+                    <span>کتابخانه دیجیتال</span>
+                </a>
+                <a href="javascript:void(0)" class="link-item" onclick="showPage('video-page')">
                     <i class="fas fa-video"></i>
-                    <h3>آموزش‌های ویدئویی</h3>
-                    <p>فیلم‌ها و کارگاه‌های آنلاین</p>
+                    <span>آموزش های ویدئویی</span>
+                </a>
+                <a href="javascript:void(0)" class="link-item" onclick="showPage('schedule-page')">
+                    <i class="fas fa-calendar-alt"></i>
+                    <span>برنامه زمانی</span>
+                </a>
+                <a href="https://shad.ir/moshaver_kerman" class="link-item" target="_blank">
+                    <i class="fas fa-users"></i>
+                    <span>گروه بزرگ مشاوران</span>
                 </a>
             </div>
         </div>
     </div>
 
-    <!-- ۴. صفحات داخلی (دانلود، کتابخانه، ویدیو) -->
- <!-- صفحه دانلود فایل‌ها -->
-<div class="page" id="download-page">
-    <div class="page-header"><h2>دانلود فایل‌های سرگروهی</h2></div>
-    <div class="back-btn-container">
-        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
+    <!-- صفحه دانلود فایل‌ها -->
+    <div class="page" id="download-page">
+        <div class="page-header">
+            <h2>دانلود فایل های مرتبط با حوزه سرگروهی و مشاوره</h2>
+            <p>دسترسی به جدیدترین فایل های آموزشی و راهنمایی</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="dynamic-cards-grid" id="download-cards-container">
+            <!-- کارت‌های دانلود اینجا قرار می‌گیرند -->
+        </div>
     </div>
-    
-    <div class="links-categories">
-        <div class="category-card">
-            <div class="category-header">
-                <i class="fas fa-file-pdf"></i>
-                <h3>فرم‌ها و نمون‌برگ‌های بازدید</h3>
+
+    <!-- صفحه بخشنامه‌ها -->
+    <div class="page" id="circular-page">
+        <div class="page-header">
+            <h2>بخشنامه های جدید آموزشی</h2>
+            <p>آخرین اطلاعیه ها و دستورالعمل های اداره کل آموزش و پرورش</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="dynamic-cards-grid" id="circular-cards-container">
+            <!-- بخشنامه‌ها اینجا قرار می‌گیرند -->
+        </div>
+    </div>
+
+    <!-- صفحه تولید محتوا -->
+    <div class="page" id="content-page">
+        <div class="page-header">
+            <h2>تولید محتوای مناطق آموزشی</h2>
+            <p>محتوای اختصاصی تولید شده توسط سرگروه های مناطق مختلف</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="dynamic-cards-grid" id="content-cards-container">
+            <!-- کارت‌های تولید محتوا اینجا قرار می‌گیرند -->
+        </div>
+    </div>
+
+    <!-- صفحه کتابخانه دیجیتال -->
+    <div class="page" id="library-page">
+        <div class="page-header">
+            <h2>کتابخانه دیجیتال</h2>
+            <p>دسترسی به منابع و کتاب‌های الکترونیکی آموزشی</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="links-categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-book-open"></i>
+                    <h3>آزمون‌های آنلاین رایگان</h3>
+                </div>
+                <div class="category-links">
+                    <a href="https://ehsanafshar.pythonanywhere.com/" class="category-link" target="_blank"><span>آزمون تشخیص کودکان دچار اختلال بیش‌فعالی</span> <i class="fas fa-external-link-alt"></i></a>
+                    <a href="https://ehsanafsharmanesh.github.io/kerman-centers/" class="category-link" target="_blank"><span>پایگاه‌های انتخاب رشته استان کرمان</span> <i class="fas fa-external-link-alt"></i></a>
+                    <a href="#" class="category-link"><span>به زودی</span></a>
+                    <a href="#" class="category-link"><span>به زودی</span></a>
+                </div>
             </div>
-            <div class="links-list">
-                <a href="https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm" class="category-link" target="_blank">
-                    <span>فرم بازدید مدارس - مقطع ابتدایی</span>
-                    <i class="fas fa-download"></i>
-                </a>
-                <a href="https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm" class="category-link" target="_blank">
-                    <span>فرم بازدید مدارس - متوسطه اول</span>
-                    <i class="fas fa-download"></i>
-                </a>
-                <a href="https://drive.google.com/uc?export=download&id=1j61pZgL82M9z7eGgX98PQLyS28P0T2Lp" class="category-link" target="_blank">
-                    <span>فرم بازدید مدارس - متوسطه دوم</span>
-                    <i class="fas fa-download"></i>
-                </a>
-                <a href="https://drive.google.com/uc?export=download&id=158I1H57j71kX7j5pS7pT7e9X8A76B5C4" class="category-link" target="_blank">
-                    <span>برنامه سالانه و تقویم اجرایی مشاوران</span>
-                    <i class="fas fa-download"></i>
-                </a>
-                <a href="https://drive.google.com/uc?export=download&id=169I1H57j71kX7j5pS7pT7e9X8A76B5C5" class="category-link" target="_blank">
-                    <span>شیوه نامه اجرایی هدایت تحصیلی</span>
-                    <i class="fas fa-download"></i>
-                </a>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>کتاب‌های ویژه دانش‌آموزان</h3>
+                </div>
+                <div class="category-links">
+                    <a href="http://chap.sch.ir/" class="category-link" target="_blank"><span>دانلود کتب درسی</span> <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/uc?export=download&id=153zZaC_dJ3vKmVBXy-XeQsCVn7Mfe7A0" class="category-link" target="_blank"><span>کتاب معرفی رشته‌های دانشگاهی علوم انسانی</span> <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/uc?export=download&id=1NZrHFzhH2yLLkBCtwcJU-aF8aZpdjAGJ" class="category-link" target="_blank"><span>کتاب معرفی رشته‌های دانشگاهی علوم تجربی</span> <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/uc?export=download&id=1VSq--lRj5dzIAdhiipXWlXVdtuav5kIr" class="category-link" target="_blank"><span>کتاب معرفی رشته‌های دانشگاهی ریاضی و فیزیک</span> <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/uc?export=download&id=1Ch90ZWRwJNVUSjY7c6bbgQLtXLWu78NY" class="category-link" target="_blank"><span>جدید: مهارت‌های پایه کنکور</span> <i class="fas fa-download"></i></a>
+                    <a href="https://drive.google.com/uc?export=download&id=12QRTmYJkFjnX8H_NqsNqL8n5Nj3AcRW3" class="category-link" target="_blank"><span>ورود به آزمون غربالگری بدون نیاز به گوشی والد</span> <i class="fas fa-download"></i></a>
+                    <a href="#" class="category-link"><span>به زودی</span></a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-user-graduate"></i>
+                    <h3>منابع ویژه مشاوران، مدیران و آموزگاران</h3>
+                </div>
+                <div class="category-links">
+                     <a href="https://drive.google.com/uc?export=download&id=1FY4fnxIzT8_ExjlSulDY_RFTIyWnMSH8" class="category-link" target="_blank"><span>آموزش فعالسازی آزمون غربالگری توسط مدیر</span> <i class="fas fa-download"></i></a>
+                     <a href="https://drive.google.com/drive/folders/1Q8YyGJqD7xzpa6ipHc2vHx8q6iplyzGu?usp=sharing" class="category-link" target="_blank"><span>منابع کارگاه ویژه رابطان مشاوره</span> <i class="fas fa-folder-open"></i></a>
+                     <a href="https://drive.google.com/uc?export=download&id=15-cI74qOvvwH6FWr56x53HdhZC66E6_q" class="category-link" target="_blank"><span>ارائه دکتر بهرام‌نژاد در پنل تخصصی پیشگیری</span> <i class="fas fa-download"></i></a>
+                     <a href="https://drive.google.com/uc?export=download&id=16tcecC4fSfxWe56eYt-MQoKQp343towY" class="category-link" target="_blank"><span>ارائه دکتر نیرومند در پنل تخصصی پیشگیری</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/912274052075652559/%D9%87%D9%88%D8%B4.zip" class="category-link" target="_blank"><span>بروشور هوش‌های چندگانه</span> <i class="fas fa-file-archive"></i></a>
+                     <a href="https://drive.google.com/uc?export=download&id=1irwUdwITm4a6cA_D6YluIQatMPgnAlSP" class="category-link" target="_blank"><span>جدید: بررسی مشکلات ورود به سامانه آزمون غربالگری</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/9017572992371820668/%D9%BE%D9%88%D8%B4%D9%87-%DA%A9%D8%A7%D8%B1-%D9%85%D8%B4%D8%A7%D9%88%D8%B1%D8%A7%D9%8BD.pdf" class="category-link" target="_blank"><span>پوشه کار مشاوران</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/6326466287187504068/%D9%87%D9%85%D9%87-%DA%86%DB%8C%D8%B2-%D8%B1%D8%A7%D8%AC%D8%B9-%D8%A8%D9%87-%D9%87%D8%AF%D8%A7%DB%8C%D8%AA-%D8%AA%D8%AD%D8%B5%DB%8C%D9%84%DB%8C.pdf" class="category-link" target="_blank"><span>کتابچه هدایت تحصیلی</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/468922717583456968/%D9%87%D9%85%DB%8C%D8%A7%D8%B1%D8%A7%D9%86-%DA%A9%D8%B1%D9%85%D8%A7%D9%86.pdf" class="category-link" target="_blank"><span>راهنمای ثبت همیاران</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/7290677974956179636/%D8%B1%D8%A7%D9%87%D9%86%D9%85%D8%A7%DB%8C-%D8%B1%D8%BA%D8%A8%D8%AA-%D9%88-%D8%AA%D9%88%D8%A7%D9%86%D8%A7%DB%8C%DB%8C.pdf" class="category-link" target="_blank"><span>راهنمای رغبت و توانایی</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/3279697692918677606/%D8%A7%DB%8C%D8%AC%D8%A7%D8%AF-%D8%B1%D9%85%D8%B2-%D8%AC%D8%AF%DB%8C%D8%AF-%D8%A8%D8%B1%D8%A7%DB%8C-%D8%AF%D8%A7%D9%86%D8%B4-%D8%A2%D9%85%D9%88%D8%B2-%D8%A7%D8%B2-%D8%B7%D8%B1%DB%8C%D9%82-%D8%B3%DB%8C%D8%AF%D8%A7.pdf" class="category-link" target="_blank"><span>آموزش ایجاد رمز جدید از سیدای مدیر</span> <i class="fas fa-download"></i></a>
+                     <a href="https://bayanbox.ir/download/7154460313579809732/rabetin.pdf" class="category-link" target="_blank"><span>فایل آموزشی رابطان مشاوره</span> <i class="fas fa-download"></i></a>
+                     <a href="#" class="category-link"><span>کیفی</span></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- صفحه کتابخانه دیجیتال -->
-<div class="page" id="library-page">
-    <div class="page-header"><h2>کتابخانه دیجیتال</h2></div>
-    <div class="back-btn-container">
-        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
-    </div>
-    
-    <div class="links-categories">
-        <div class="category-card">
-            <div class="category-header">
-                <i class="fas fa-graduation-cap"></i>
-                <h3>کتب و ابزارهای سنجش و مشاوره</h3>
+    <!-- صفحه آموزش های ویدئویی -->
+    <div class="page" id="video-page">
+        <div class="page-header">
+            <h2>آموزش‌های ویدئویی</h2>
+            <p>دسترسی به فیلم‌های آموزشی و کارگاه‌های مجازی</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="links-categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>کارگاه‌های آموزشی</h3>
+                </div>
+                <div class="category-links">
+                    <a href="#" class="category-link"><span>کارگاه روش‌های تدریس</span></a>
+                    <a href="#" class="category-link"><span>کارگاه مشاوره تحصیلی</span></a>
+                    <a href="#" class="category-link"><span>کارگاه روانشناسی کودک</span></a>
+                    <a href="#" class="category-link"><span>کارگاه مدیریت کلاس</span></a>
+                </div>
             </div>
-            <div class="links-list">
-                <a href="http://chap.sch.ir/" class="category-link" target="_blank">
-                    <span>سامانه پایگاه کتاب‌های درسی</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-                <a href="https://ehsanafshar.pythonanywhere.com/" class="category-link" target="_blank">
-                    <span>آزمون آنلاین اختلال بیش‌فعالی (ADHD)</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
-                <a href="https://my.medu.ir" class="category-link" target="_blank">
-                    <span>ورود به سامانه مای مدیو (هدایت تحصیلی)</span>
-                    <i class="fas fa-external-link-alt"></i>
-                </a>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-video"></i>
+                    <h3>فیلم‌های ویژه دبیران، مدیران و معلمین</h3>
+                </div>
+                <div class="category-links">
+                    <a href="https://www.aparat.com/v/Sz8Yh" class="category-link" target="_blank"><span>آموزش تکمیل پرسشنامه نماد معلمین ابتدایی</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/wwx4y39" class="category-link" target="_blank"><span>آموزش طریقه انجام رصد و پایش</span> <i class="fab fa-youtube"></i></a>
+                    <a href="#" class="category-link"><span>تدریس فارسی پایه نهم</span></a>
+                    <a href="#" class="category-link"><span>تدریس انگلیسی پایه دهم</span></a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>ویدئوهای آموزش دانش آموزی</h3>
+                </div>
+                <div class="category-links">
+                    <a href="https://www.aparat.com/v/daim79c" class="category-link" target="_blank"><span>آموزش شرکت در آزمون غربالگری</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://aparat.com/v/otl69pe" class="category-link" target="_blank"><span>موشن‌گرافی اهمیت آزمون غربالگری</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://aparat.com/v/jilk082" class="category-link" target="_blank"><span>بخش اول آموزش هدایت تحصیلی</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/y782x16" class="category-link" target="_blank"><span>تیپ شخصیتی چیه؟</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/s6674x4" class="category-link" target="_blank"><span>افسردگی چیست؟</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/g83k399" class="category-link" target="_blank"><span>درمان بی‌خوابی</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/l69mm1q" class="category-link" target="_blank"><span>آشنایی با آزمون عملی کنکور تربیت بدنی</span> <i class="fab fa-youtube"></i></a>
+                    <a href="https://www.aparat.com/v/q38s47t" class="category-link" target="_blank"><span>راهنمای ثبت نام نمونه و سمپاد</span> <i class="fab fa-youtube"></i></a>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- صفحه ویدیوها -->
-<div class="page" id="video-page">
-    <div class="page-header"><h2>آموزش‌های ویدئویی</h2></div>
-    <div class="back-btn-container">
-        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
-    </div>
-    
-    <div class="links-categories">
-        <div class="category-card">
-            <div class="category-header">
-                <i class="fas fa-video"></i>
-                <h3>فیلم‌ها و کارگاه‌های آموزشی</h3>
+    <!-- صفحه برنامه زمانی -->
+    <div class="page" id="schedule-page">
+        <div class="page-header">
+            <h2>برنامه زمانی</h2>
+            <p>برنامه‌های زمانی جلسات، کارگاه‌ها و رویدادها</p>
+        </div>
+
+        <div class="back-btn-container">
+            <button class="back-btn" onclick="showPage('main-page')">
+                <i class="fas fa-arrow-right"></i> بازگشت به صفحه اصلی
+            </button>
+        </div>
+        
+        <div class="links-categories">
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>جلسات ماهانه</h3>
+                </div>
+                <div class="category-links">
+                    <a href="#" class="category-link"><span>جلسه سرگروه‌های آموزشی</span></a>
+                    <a href="#" class="category-link"><span>جلسه مشاوران مدارس</span></a>
+                    <a href="#" class="category-link"><span>جلسه مدیران مناطق</span></a>
+                    <a href="#" class="category-link"><span>جلسه کارشناسی برنامه‌ریزی</span></a>
+                </div>
             </div>
-            <div class="links-list">
-                <a href="https://www.aparat.com/v/Sz8Yh" class="category-link" target="_blank">
-                    <span>آموزش پرسشنامه نماد ویژه معلمین</span>
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://www.aparat.com/v/daim79c" class="category-link" target="_blank">
-                    <span>آموزش شرکت در آزمون غربالگری دانش‌آموزی</span>
-                    <i class="fab fa-youtube"></i>
-                </a>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-clock"></i>
+                    <h3>برنامه امتحانات</h3>
+                </div>
+                <div class="category-links">
+                    <a href="#" class="category-link"><span>برنامه امتحانات نوبت اول</span></a>
+                    <a href="#" class="category-link"><span>برنامه امتحانات نوبت دوم</span></a>
+                    <a href="#" class="category-link"><span>برنامه آزمون‌های هماهنگ</span></a>
+                    <a href="#" class="category-link"><span>برنامه المپیادهای علمی</span></a>
+                </div>
+            </div>
+            
+            <div class="category-card">
+                <div class="category-header">
+                    <i class="fas fa-tasks"></i>
+                    <h3>رویدادهای ویژه</h3>
+                </div>
+                <div class="category-links">
+                    <a href="#" class="category-link"><span>هفته مشاغل</span></a>
+                    <a href="#" class="category-link"><span>جشنواره الگوهای تدریس</span></a>
+                    <a href="#" class="category-link"><span>مسابقات فرهنگی و هنری</span></a>
+                    <a href="#" class="category-link"><span>اردوهای دانش‌آموزی</span></a>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-    <!-- ۵. دکمه هوم شیشه‌ای (AssistiveTouch) -->
-    <div class="glass-home-btn" onclick="showPage('main-page')">
-        <i class="fas fa-home"></i>
-    </div>
-
-    <!-- ۶. منوی دایره‌ای انیمیشنی (اسکرول به بالا) -->
-    <div class="circular-radial-menu" id="radialMenu">
-        <a href="https://shad.ir/moshaver_kerman" class="radial-item" target="_blank"><i class="fas fa-users"></i></a>
-        <a href="tel:1570" class="radial-item"><i class="fas fa-phone"></i></a>
-        <a href="javascript:void(0)" class="radial-item" onclick="showPage('library-page')"><i class="fas fa-book"></i></a>
     </div>
 
     <footer>
-        <p>توسعه‌ و اجرا: احسان افشارمنش © ۱۴۰۵-۱۴۰۴</p>
+        <p>توسعه‌ و اجرا: احسان افشارمنش(سرگروه مشاوره استان کرمان) © 1405-1404</p>
     </footer>
 
     <script>
-        // ۵ ثانیه لودینگ اولیه
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('splash-screen').classList.add('hidden');
-            }, 5000);
-        });
-
-        // مدیریت تغییر صفحه
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
-            document.getElementById(pageId).classList.add('active');
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        }
-
-        // اسلایدر خودکار
+        // اسلایدر اصلی
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
-        setInterval(() => {
-            currentSlide = (currentSlide + 1) % slides.length;
-            document.querySelector('.slides').style.transform = `translateX(${currentSlide * 100}%)`;
-        }, 4000);
+        const totalSlides = slides.length;
+        let slideInterval;
 
-        // مدیریت اسکرول برای منوی دایره‌ای سمت راست
-        let lastScrollTop = 0;
-        const radialMenu = document.getElementById('radialMenu');
+        function updateSlider() {
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(${currentSlide * 100}%)`;
+        }
 
-        window.addEventListener('scroll', () => {
-            let st = window.pageYOffset || document.documentElement.scrollTop;
-            if (st < lastScrollTop && st > 100) {
-                // اسکرول به سمت بالا
-                radialMenu.classList.add('visible');
-            } else {
-                // اسکرول به سمت پایین
-                radialMenu.classList.remove('visible');
-            }
-            lastScrollTop = st <= 0 ? 0 : st;
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function startAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 4000);
+        }
+
+        function stopAutoSlide() {
+            clearInterval(slideInterval);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSlider();
+            startAutoSlide();
+
+            document.querySelector('.slider-nav .next').addEventListener('click', () => {
+                nextSlide();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+
+            document.querySelector('.slider-nav .prev').addEventListener('click', () => {
+                currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+                updateSlider();
+                stopAutoSlide();
+                startAutoSlide();
+            });
+
+            const slider = document.querySelector('.slider');
+            slider.addEventListener('mouseenter', stopAutoSlide);
+            slider.addEventListener('mouseleave', startAutoSlide);
+
+            // رندر کامل کارت‌های دانلود
+            renderDownloadCards();
+            // رندر کامل بخشنامه‌ها
+            renderCircularCards();
+            // رندر کامل تولید محتوا
+            renderContentCards();
         });
+
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            const selectedPage = document.getElementById(pageId);
+            if (selectedPage) {
+                selectedPage.classList.add('active');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        // رندر کردن تمامی فایل‌های دانلود (بدون محدودیت)
+        function renderDownloadCards() {
+            const container = document.getElementById('download-cards-container');
+            if (!container) return;
+
+            const downloadItems = [
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه مدارس ابتدایی', link: 'https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm' },
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه متوسطه اول', link: 'https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm' },
+                { icon: 'fas fa-file-powerpoint', title: 'قالب آماده پاورپوینت', desc: 'جهت گزارش تصویری', link: 'https://drive.google.com/uc?export=download&id=1cTdzKkJeC0kHuxrszJBsa_BG9iILpdXD' },
+                { icon: 'fas fa-file-excel', title: 'اکسل ویژه گزارش', desc: 'جهت گزارش آماری', link: 'https://drive.google.com/uc?export=download&id=10mflsLLS1GSWu_WHhPNZsQP_V2-vxBaQ' },
+                { icon: 'fas fa-file-pdf', title: 'فرم بازدید مدارس', desc: 'ویژه متوسطه دوم', link: 'https://drive.google.com/uc?export=download&id=1WazinDMbFirene8vt-2zU_ll3sNMRAp9' },
+                { icon: 'fas fa-file-pdf', title: 'نمون برگ بازدید', desc: 'فعالیت‌های سرگروه منطقه', link: 'https://drive.google.com/uc?export=download&id=115lQADR1-EAVhWTiusGl9l6LDyzbOZvL' },
+                { icon: 'fas fa-file-pdf', title: 'پوشه کار مشاور', desc: 'ویژه مشاوران مدارس', link: 'https://drive.google.com/uc?export=download&id=1uPh_oINA6nuGvpln7Cjv_EtZ1cBBQ1MS' },
+                { icon: 'fas fa-file-pdf', title: 'ارزیابی فعالیت مشاوران', desc: 'ویژه بازگشایی مدارس', link: 'https://drive.google.com/uc?export=download&id=1vEd22aF6RLLmYyZxiT20kF26bLFQz_KM' }
+            ];
+
+            container.innerHTML = downloadItems.map(item => `
+                <a href="${item.link}" class="custom-card" target="_blank">
+                    <i class="${item.icon}"></i>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                </a>
+            `).join('');
+        }
+
+        // رندر بخشنامه‌ها
+        function renderCircularCards() {
+            const container = document.getElementById('circular-cards-container');
+            if (!container) return;
+
+            const circularItems = [
+                { icon: 'fas fa-scroll', title: 'بخشنامه المپیادهای علمی', desc: 'دستورالعمل جدید برگزاری' },
+                { icon: 'fas fa-clipboard-check', title: 'برنامه ارزشیابی کیفی', desc: 'آخرین تغییرات شیوه نامه' },
+                { icon: 'fas fa-calendar-alt', title: 'کارگاه های تابستانی', desc: 'فراخوان دوره های توانمندسازی' },
+                { icon: 'fas fa-chart-line', title: 'آمار و ارزیابی عملکرد', desc: 'گزارش عملکرد آموزشی مناطق' },
+                { icon: 'fas fa-award', title: 'جشنواره الگوهای تدریس', desc: 'فراخوان شرکت در جشنواره' }
+            ];
+
+            container.innerHTML = circularItems.map(item => `
+                <a href="#" class="custom-card">
+                    <i class="${item.icon}"></i>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                </a>
+            `).join('');
+        }
+
+        // رندر تولید محتوا
+        function renderContentCards() {
+            const container = document.getElementById('content-cards-container');
+            if (!container) return;
+
+            const contentItems = [
+                { icon: 'fas fa-film', title: 'محتوای چندرسانه ای', desc: 'انیمیشن و فیلم آموزشی' },
+                { icon: 'fas fa-box', title: 'بسته های آموزشی', desc: 'مجموعه کامل دروس مختلف' },
+                { icon: 'fas fa-laptop-code', title: 'نرم افزارهای آموزشی', desc: 'اپلیکیشن کمک آموزشی' },
+                { icon: 'fas fa-puzzle-piece', title: 'بازی های آموزشی', desc: 'بازی های تعاملی درسی' },
+                { icon: 'fas fa-mobile-alt', title: 'اپلیکیشن موبایل', desc: 'برنامه های آموزشی اندروید' }
+            ];
+
+            container.innerHTML = contentItems.map(item => `
+                <a href="#" class="custom-card">
+                    <i class="${item.icon}"></i>
+                    <h3>${item.title}</h3>
+                    <p>${item.desc}</p>
+                </a>
+            `).join('');
+        }
     </script>
 </body>
 </html>
