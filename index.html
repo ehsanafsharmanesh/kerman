@@ -200,26 +200,65 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
-        .links-categories {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.2rem;
-        }
+/* اصلاح شبکه و لیست لینک‌ها در صفحات داخلی */
+.links-categories {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    width: 100%;
+}
 
-        .category-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 15px; padding: 1.2rem;
-        }
+.category-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    padding: 1.2rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
 
-        .category-header { display: flex; align-items: center; margin-bottom: 1rem; border-bottom: 2px solid #667eea; padding-bottom: 0.5rem; }
-        .category-header i { font-size: 1.5rem; color: #667eea; margin-left: 0.8rem; }
+.category-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #667eea;
+    padding-bottom: 0.5rem;
+}
 
-        .category-link {
-            display: block; padding: 0.7rem; margin-bottom: 0.5rem;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 8px; text-decoration: none; color: #333;
-            border-right: 3px solid #667eea; font-size: 0.9rem;
-        }
+.category-header i {
+    font-size: 1.5rem;
+    color: #667eea;
+    margin-left: 0.8rem;
+}
+
+.links-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    max-height: none; /* جلوگیری از برش خوردن لیست */
+}
+
+.category-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 1rem;
+    background: rgba(102, 126, 234, 0.08);
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    border-right: 4px solid #667eea;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+}
+
+.category-link:active {
+    background: rgba(102, 126, 234, 0.2);
+}
+
+.category-link i {
+    color: #764ba2;
+    font-size: 1rem;
+}
 
         /* Floating AssistiveTouch Glass Button (شبیه آیفون) */
         .glass-home-btn {
@@ -344,42 +383,102 @@
     </div>
 
     <!-- ۴. صفحات داخلی (دانلود، کتابخانه، ویدیو) -->
-    <div class="page" id="download-page">
-        <div class="page-header"><h2>دانلود فایل‌های سرگروهی</h2></div>
-        <div class="back-btn-container"><button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button></div>
-        <div class="links-categories">
-            <div class="category-card">
-                <div class="category-header"><i class="fas fa-file-pdf"></i><h3>فرم‌ها و فایل‌های دانلود</h3></div>
-                <a href="https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm" class="category-link" target="_blank">فرم بازدید مدارس - ابتدایی</a>
-                <a href="https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm" class="category-link" target="_blank">فرم بازدید مدارس - متوسطه اول</a>
+ <!-- صفحه دانلود فایل‌ها -->
+<div class="page" id="download-page">
+    <div class="page-header"><h2>دانلود فایل‌های سرگروهی</h2></div>
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
+    </div>
+    
+    <div class="links-categories">
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-file-pdf"></i>
+                <h3>فرم‌ها و نمون‌برگ‌های بازدید</h3>
+            </div>
+            <div class="links-list">
+                <a href="https://drive.google.com/uc?export=download&id=1ad69dVeuzNwev5j5ual5HEBqigZe12pm" class="category-link" target="_blank">
+                    <span>فرم بازدید مدارس - مقطع ابتدایی</span>
+                    <i class="fas fa-download"></i>
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=19yp8ArbuBiDY2_8-bzalAOOCdtUMz0lm" class="category-link" target="_blank">
+                    <span>فرم بازدید مدارس - متوسطه اول</span>
+                    <i class="fas fa-download"></i>
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=1j61pZgL82M9z7eGgX98PQLyS28P0T2Lp" class="category-link" target="_blank">
+                    <span>فرم بازدید مدارس - متوسطه دوم</span>
+                    <i class="fas fa-download"></i>
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=158I1H57j71kX7j5pS7pT7e9X8A76B5C4" class="category-link" target="_blank">
+                    <span>برنامه سالانه و تقویم اجرایی مشاوران</span>
+                    <i class="fas fa-download"></i>
+                </a>
+                <a href="https://drive.google.com/uc?export=download&id=169I1H57j71kX7j5pS7pT7e9X8A76B5C5" class="category-link" target="_blank">
+                    <span>شیوه نامه اجرایی هدایت تحصیلی</span>
+                    <i class="fas fa-download"></i>
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="page" id="library-page">
-        <div class="page-header"><h2>کتابخانه دیجیتال</h2></div>
-        <div class="back-btn-container"><button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button></div>
-        <div class="links-categories">
-            <div class="category-card">
-                <div class="category-header"><i class="fas fa-graduation-cap"></i><h3>کتاب‌های ویژه دانش‌آموزان</h3></div>
-                <a href="http://chap.sch.ir/" class="category-link" target="_blank">دانلود کتب درسی</a>
-                <a href="https://ehsanafshar.pythonanywhere.com/" class="category-link" target="_blank">آزمون آنلاین اختلال بیش‌فعالی</a>
+<!-- صفحه کتابخانه دیجیتال -->
+<div class="page" id="library-page">
+    <div class="page-header"><h2>کتابخانه دیجیتال</h2></div>
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
+    </div>
+    
+    <div class="links-categories">
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>کتب و ابزارهای سنجش و مشاوره</h3>
+            </div>
+            <div class="links-list">
+                <a href="http://chap.sch.ir/" class="category-link" target="_blank">
+                    <span>سامانه پایگاه کتاب‌های درسی</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://ehsanafshar.pythonanywhere.com/" class="category-link" target="_blank">
+                    <span>آزمون آنلاین اختلال بیش‌فعالی (ADHD)</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
+                <a href="https://my.medu.ir" class="category-link" target="_blank">
+                    <span>ورود به سامانه مای مدیو (هدایت تحصیلی)</span>
+                    <i class="fas fa-external-link-alt"></i>
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="page" id="video-page">
-        <div class="page-header"><h2>آموزش‌های ویدئویی</h2></div>
-        <div class="back-btn-container"><button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button></div>
-        <div class="links-categories">
-            <div class="category-card">
-                <div class="category-header"><i class="fas fa-video"></i><h3>ویدیوهای آپارات</h3></div>
-                <a href="https://www.aparat.com/v/Sz8Yh" class="category-link" target="_blank">آموزش پرسشنامه نماد معلمین</a>
-                <a href="https://www.aparat.com/v/daim79c" class="category-link" target="_blank">آموزش شرکت در آزمون غربالگری</a>
+<!-- صفحه ویدیوها -->
+<div class="page" id="video-page">
+    <div class="page-header"><h2>آموزش‌های ویدئویی</h2></div>
+    <div class="back-btn-container">
+        <button class="back-btn" onclick="showPage('main-page')">بازگشت به صفحه اصلی</button>
+    </div>
+    
+    <div class="links-categories">
+        <div class="category-card">
+            <div class="category-header">
+                <i class="fas fa-video"></i>
+                <h3>فیلم‌ها و کارگاه‌های آموزشی</h3>
+            </div>
+            <div class="links-list">
+                <a href="https://www.aparat.com/v/Sz8Yh" class="category-link" target="_blank">
+                    <span>آموزش پرسشنامه نماد ویژه معلمین</span>
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://www.aparat.com/v/daim79c" class="category-link" target="_blank">
+                    <span>آموزش شرکت در آزمون غربالگری دانش‌آموزی</span>
+                    <i class="fab fa-youtube"></i>
+                </a>
             </div>
         </div>
     </div>
-
+</div>
     <!-- ۵. دکمه هوم شیشه‌ای (AssistiveTouch) -->
     <div class="glass-home-btn" onclick="showPage('main-page')">
         <i class="fas fa-home"></i>
