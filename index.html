@@ -605,8 +605,8 @@
                 <!-- اسلاید اختصاصی روزشمار هفته بهداشت روان -->
                 <div class="slide countdown-slide">
                     <div class="countdown-header">
-                        <h2><i class="fas fa-brain"></i> روزشمار هفته بهداشت روان</h2>
-                        <p>فرصت باقی‌مانده تا ۱۸ مهرماه (آغاز هفته بهداشت روان)</p>
+                        <h2><i class="fas fa-brain"></i> روزشمار هفته معرفی مشاغل</h2>
+                        <p>فرصت باقی‌مانده تا 1 اردیبهشت ماه 1406 (آغاز هفته معرفی مشاغل )</p>
                     </div>
                     <div class="timer-container">
                         <div class="timer-box">
@@ -1003,44 +1003,36 @@ window.addEventListener('load', () => {
     }
 }, 3000);
 
-        // الگوریتم محاسبه خودکار روزشمار تا ۱۸ مهرماه
-        function startCountdown() {
-            function updateTimer() {
-                const now = new Date();
-                let currentYear = now.getFullYear();
-                
-                // تاریخ ۱۸ مهرماه (10 October)
-                let targetDate = new Date(currentYear, 9, 10, 0, 0, 0);
+      function startCountdown() {
+    // تاریخ هدف: یکم اردیبهشت ۱۴۰۶ ساعت ۷:۰۰ صبح به وقت ایران
+    const targetDate = new Date("2027-04-21T07:00:00+03:30").getTime();
 
-                // اگر از ۱۸ مهر امسال گذشته بود، تاریخ ۱۸ مهر سال بعد محاسبه می‌شود
-                if (now > targetDate) {
-                    targetDate = new Date(currentYear + 1, 9, 10, 0, 0, 0);
-                }
+    function updateTimer() {
+        const now = new Date().getTime();
+        const diff = targetDate - now;
 
-                const diff = targetDate - now;
-
-                if (diff <= 0) {
-                    document.getElementById('cd-days').innerText = "00";
-                    document.getElementById('cd-hours').innerText = "00";
-                    document.getElementById('cd-minutes').innerText = "00";
-                    document.getElementById('cd-seconds').innerText = "00";
-                    return;
-                }
-
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-                document.getElementById('cd-days').innerText = days < 10 ? '0' + days : days;
-                document.getElementById('cd-hours').innerText = hours < 10 ? '0' + hours : hours;
-                document.getElementById('cd-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
-                document.getElementById('cd-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
-            }
-
-            updateTimer();
-            setInterval(updateTimer, 1000);
+        if (diff <= 0) {
+            document.getElementById('cd-days').innerText = "00";
+            document.getElementById('cd-hours').innerText = "00";
+            document.getElementById('cd-minutes').innerText = "00";
+            document.getElementById('cd-seconds').innerText = "00";
+            return;
         }
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+        document.getElementById('cd-days').innerText = days < 10 ? '0' + days : days;
+        document.getElementById('cd-hours').innerText = hours < 10 ? '0' + hours : hours;
+        document.getElementById('cd-minutes').innerText = minutes < 10 ? '0' + minutes : minutes;
+        document.getElementById('cd-seconds').innerText = seconds < 10 ? '0' + seconds : seconds;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+}
 
         // موتور اسلایدر اصلی
         let currentSlide = 0;
