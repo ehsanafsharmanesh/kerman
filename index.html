@@ -646,11 +646,11 @@
                 
                 <div class="slide">
                     <a href="javascript:void(0)" class="slide-link" onclick="showPage('circular-page')">
-                        <img src="images/circular1.jpg" alt="بخشنامه های جدید">
+                        <img src="images/circular1.jpg" alt="شیوه‌نامه‌ها،دستورالعمل‌ها و...">
                         <div class="slide-overlay">
                             <div class="slide-content">
-                                <h2>بخشنامه های جدید</h2>
-                                <p>آخرین اطلاعیه ها و دستورالعمل های آموزشی</p>
+                                <h2>شیوه‌نامه‌ها،دستورالعمل‌ها و...</h2>
+                                <p>آخرین شیوه نامه ها و دستورالعمل های حوزه پورشی و مشاوره</p>
                             </div>
                         </div>
                     </a>
@@ -722,8 +722,8 @@
                 </a>
                 <a href="javascript:void(0)" class="box" onclick="showPage('circular-page')">
                     <i class="fas fa-bullhorn"></i>
-                    <h3>بخشنامه های جدید</h3>
-                    <p>آخرین اطلاعیه ها</p>
+                    <h3>شیوه‌نامه‌ها،دستورالعمل‌ها و...</h3>
+                    <p>آخرین شیوه نامه ها و دستورالعمل های حوزه مشاوره و پرورشی</p>
                 </a>
                 <a href="javascript:void(0)" class="box" onclick="showPage('content-page')">
                     <i class="fas fa-palette"></i>
@@ -775,8 +775,8 @@
     <!-- صفحه بخشنامه‌ها -->
     <div class="page" id="circular-page">
         <div class="page-header">
-            <h2>بخشنامه های جدید آموزشی</h2>
-            <p>آخرین اطلاعیه ها و دستورالعمل های اداره کل آموزش و پرورش</p>
+            <h2>شیوه‌نامه‌ها،دستورالعمل‌ها و...</h2>
+            <p>آخرین شیوه نامه ها و دستورالعمل های حوزه معاونت پرورشی  اداره کل</p>
         </div>
 
         <div class="back-btn-container">
@@ -1173,21 +1173,21 @@ window.addEventListener('load', () => {
             const container = document.getElementById('circular-cards-container');
             if (!container) return;
 
-            const circularItems = [
-                { icon: 'fas fa-scroll', title: 'بخشنامه معرفی سرگروه', desc: 'معرفی سرگروه مشاوره 1405' },
-                { icon: 'fas fa-clipboard-check', title: 'برنامه ارزشیابی کیفی', desc: 'آخرین تغییرات شیوه نامه' },
-                { icon: 'fas fa-calendar-alt', title: 'کارگاه های تابستانی', desc: 'فراخوان دوره های توانمندسازی' },
-                { icon: 'fas fa-chart-line', title: 'آمار و ارزیابی عملکرد', desc: 'گزارش عملکرد آموزشی مناطق' },
-                { icon: 'fas fa-award', title: 'جشنواره الگوهای تدریس', desc: 'فراخوان شرکت در جشنواره' }
-            ];
+const circularItems = [
+    { icon: 'fas fa-scroll',           title: 'بخشنامه معرفی سرگروه',    desc: 'معرفی سرگروه مشاوره 1405',        link: 'https://drive.google.com/uc?export=download&id=10jqO9mLJczrMKiNZ-Un7YyZ__YWocmhB' },
+    { icon: 'fas fa-comments',  title: 'فایلهای حوزه مراقبت',    desc: 'بخش مراقبت در برابر آسیب‌های اجتماعی',         link: 'https://drive.google.com/uc?export=download&id=1kZ4gCkE-niZyFF8qZf06k8taCvAsy2bZ' },
+    { icon: 'fas fa-calendar-alt',     title: 'فایلهای حوزه امورتربیتی',     desc: 'بخش امورتربیتی',    link: 'https://drive.google.com/uc?export=download&id=1A8hNiBl1CFR-jsXxkOqYPnnh0YNoZ70e' },
+    { icon: 'fas fa-hands-helping',    title: 'فایل‌های حوزه مشاوره',    desc: 'شیوه‌نامه‌ها و دستورالعمل‌ها',     link: 'https://drive.google.com/uc?export=download&id=13UBXJzWYDhXbLyp0FATCwuvo5KIx8-Nt' },
+    { icon: 'fas fa-award',            title: 'جشنواره الگوهای برتر تدریس',   desc: 'به زودی',         link: '#' }
+];
 
-            container.innerHTML = circularItems.map(item => `
-                <a href="#" class="custom-card">
-                    <i class="${item.icon}"></i>
-                    <h3>${item.title}</h3>
-                    <p>${item.desc}</p>
-                </a>
-            `).join('');
+container.innerHTML = circularItems.map(item => `
+    <a href="${item.link}" class="custom-card" target="_blank" rel="noopener noreferrer">
+        <i class="${item.icon}"></i>
+        <h3>${item.title}</h3>
+        <p>${item.desc}</p>
+    </a>
+`).join('');
         }
 
         function renderContentCards() {
